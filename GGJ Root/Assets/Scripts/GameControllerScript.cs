@@ -49,7 +49,6 @@ public class GameControllerScript : MonoBehaviour
         sword.damage.barrier = 10;
         sword.damage.amount = 0.5f;
 
-
     }
 
     void Update()
@@ -72,6 +71,9 @@ public class GameControllerScript : MonoBehaviour
         checkFireRate(magic);
         checkFireRate(sword);
 
+        checkDamage(gun);
+        checkDamage(magic);
+        checkDamage(sword);
 
     }
 
@@ -218,7 +220,85 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
+    private void checkDamage(Weapon weapon)
+    {
+        if (weapon.kill >= weapon.damage.barrier)
+        {
+            weapon.damage.add += weapon.damage.amount;
 
+            switch (weapon)
+            {
+                case gun:
+
+                    switch (weapon.damage.add / weapon.damage.amount)
+                    {
+                        case 1:
+                            weapon.damage.barrier = 15
+                            break;
+                        case 2:
+                            weapon.damage.barrier = 20
+                            break;
+                        case 3:
+                            weapon.damage.barrier = 25
+                            break;
+                        case 4:
+                            weapon.damage.barrier = 30
+                            break;
+                    }
+                    // Change of weapon firerate
+
+                    //   combat.gun_fireRate += 0.5f;
+                    break;
+
+                case magic:
+
+                    switch (weapon.damage.add / weapon.damage.amount)
+                    {
+                        case 1:
+                            weapon.damage.barrier = 15
+                            break;
+                        case 2:
+                            weapon.damage.barrier = 20
+                            break;
+                        case 3:
+                            weapon.damage.barrier = 25
+                            break;
+                        case 4:
+                            weapon.damage.barrier = 30
+                            break;
+                    }
+                    // Change of weapon firerate
+
+                    //   combat.gun_fireRate += 0.5f;
+                    break;
+
+                case sword:
+
+                    switch (weapon.damage.add / weapon.damage.amount)
+                    {
+                        case 1:
+                            weapon.damage.barrier = 15
+                            break;
+                        case 2:
+                            weapon.damage.barrier = 20
+                            break;
+                        case 3:
+                            weapon.damage.barrier = 25
+                            break;
+                        case 4:
+                            weapon.damage.barrier = 30
+                            break;
+                    }
+                    // Change of weapon firerate
+
+                    //   combat.gun_fireRate += 0.5f;
+                    break;
+
+            }
+            //   combat.gainLevel();
+
+        }
+    }
 
 
 }
