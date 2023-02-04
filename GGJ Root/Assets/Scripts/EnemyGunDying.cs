@@ -164,9 +164,9 @@ public class EnemyGunDying : MonoBehaviour
                     gameControllerScript.magic.kill++;
                     break;
             }
-            gameControllerScript.score += 150 * gameControllerScript.streak;
+            //gameControllerScript.score += 150 * gameControllerScript.streak;
             gameControllerScript.streak++;
-            gameControllerScript.checkScore();
+            //gameControllerScript.checkScore();
             Die31();
         }
 

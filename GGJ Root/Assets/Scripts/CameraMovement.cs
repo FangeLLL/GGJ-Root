@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class CameraMovement : MonoBehaviour
 {
+    public FamilyTreeStatInformer familyTreeStatInformer;
+    public GameObject canvas2;
     public Transform Parent;
     public Transform Child;
     public GameObject PhotoFrame1;
@@ -23,13 +25,12 @@ public class CameraMovement : MonoBehaviour
     public GameObject SerpilRootoglu6;
     Vector3 deathpositiontracker;
     public float moveSpeed = 2f;
-    private bool moveCamera = false;
-    private bool setpositiontoparent = false;
+    public float DeathCounterforChildParrentSet;
+    public bool moveCamera = false;
+    public bool setpositiontoparent = false;
     private bool setpositiontochild = false;
     private bool b = true;
-    public GameObject canvas2;
     public Image fadeImage;
-    public float DeathCounterforChildParrentSet;
     [SerializeField] CinemachineVirtualCamera vcam;
 
     private void Start()
@@ -101,7 +102,9 @@ public class CameraMovement : MonoBehaviour
             setpositiontochild = true;
             yield return new WaitForSeconds(1f);
             StartCoroutine(FadeIn());
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.25f);
+            //familyTreeStatInformer.OnPlayerDeath();
+            yield return new WaitForSeconds(.25f);
             moveCamera = false;
         }
 
@@ -116,7 +119,9 @@ public class CameraMovement : MonoBehaviour
             setpositiontochild = true;
             yield return new WaitForSeconds(1f);
             StartCoroutine(FadeIn());
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.25f);
+            //familyTreeStatInformer.OnPlayerDeath();
+            yield return new WaitForSeconds(.25f);
             moveCamera = false;
         }
 
@@ -131,7 +136,9 @@ public class CameraMovement : MonoBehaviour
             setpositiontochild = true;
             yield return new WaitForSeconds(1f);
             StartCoroutine(FadeIn());
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.25f);
+            //familyTreeStatInformer.OnPlayerDeath();
+            yield return new WaitForSeconds(.25f);
             moveCamera = false;
         }
 
@@ -146,7 +153,9 @@ public class CameraMovement : MonoBehaviour
             setpositiontochild = true;
             yield return new WaitForSeconds(1f);
             StartCoroutine(FadeIn());
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.25f);
+            //familyTreeStatInformer.OnPlayerDeath();
+            yield return new WaitForSeconds(.25f);
             moveCamera = false;
         }
 
@@ -161,7 +170,9 @@ public class CameraMovement : MonoBehaviour
             setpositiontochild = true;
             yield return new WaitForSeconds(1f);
             StartCoroutine(FadeIn());
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.25f);
+            //familyTreeStatInformer.OnPlayerDeath();
+            yield return new WaitForSeconds(.25f);
             moveCamera = false;
         }
     }
@@ -203,12 +214,16 @@ public class CameraMovement : MonoBehaviour
 
             StartCoroutine(FadeIn());
 
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(.25f);
 
-            moveCamera = true;
-            setpositiontoparent = false;
+            familyTreeStatInformer.OnPlayerDeath();
 
-            yield return null;
+            //yield return new WaitForSeconds(3.75f);
+
+            //moveCamera = true;
+            //setpositiontoparent = false;
+
+            //yield return null;
         }
 
         else if (DeathCounterforChildParrentSet == 2)
@@ -239,7 +254,11 @@ public class CameraMovement : MonoBehaviour
 
             StartCoroutine(FadeIn());
 
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(.25f);
+
+            familyTreeStatInformer.OnPlayerDeath();
+
+            yield return new WaitForSeconds(3.75f);
 
             moveCamera = true;
             setpositiontoparent = false;
@@ -275,7 +294,11 @@ public class CameraMovement : MonoBehaviour
 
             StartCoroutine(FadeIn());
 
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(.25f);
+
+            familyTreeStatInformer.OnPlayerDeath();
+
+            yield return new WaitForSeconds(3.75f);
 
             moveCamera = true;
             setpositiontoparent = false;
@@ -311,7 +334,11 @@ public class CameraMovement : MonoBehaviour
 
             StartCoroutine(FadeIn());
 
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(.25f);
+
+            familyTreeStatInformer.OnPlayerDeath();
+
+            yield return new WaitForSeconds(3.75f);
 
             moveCamera = true;
             setpositiontoparent = false;
@@ -347,7 +374,11 @@ public class CameraMovement : MonoBehaviour
 
             StartCoroutine(FadeIn());
 
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(.25f);
+
+            familyTreeStatInformer.OnPlayerDeath();
+
+            yield return new WaitForSeconds(3.75f);
 
             moveCamera = true;
             setpositiontoparent = false;

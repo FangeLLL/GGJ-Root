@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 public class PlayerKiller : MonoBehaviour
 {
     public CameraMovement cameraMovement;
+    //public FamilyTreeStatInformer familyTreeStatInformer;
 
     private void OnEnable()
     {
@@ -17,6 +18,7 @@ public class PlayerKiller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
+            //familyTreeStatInformer.OnPlayerDeath();
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             GetComponent<PlayerMovement>().enabled = false;
             cameraMovement.StartCoroutine(cameraMovement.ManFuckThisGame());
