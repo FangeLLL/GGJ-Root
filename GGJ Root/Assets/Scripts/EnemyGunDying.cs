@@ -7,6 +7,7 @@ using UnityEngine.Rendering.Universal;
 public class EnemyGunDying : MonoBehaviour
 {
     GameControllerScript gameControllerScript;
+    WaveSystem waveSystem;
 
     [SerializeField] private Material flashMaterial;
     [SerializeField] private float duration;
@@ -79,6 +80,7 @@ public class EnemyGunDying : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalMaterial = spriteRenderer.material;
         gameControllerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameControllerScript>();
+        waveSystem = GameObject.FindGameObjectWithTag("GameController").GetComponent<WaveSystem>();
         col2 = GetComponent<BoxCollider2D>();
     }
     public void TakeDamage(float hpdamage,string weapon)
@@ -167,8 +169,9 @@ public class EnemyGunDying : MonoBehaviour
                     break;
             }
             gameControllerScript.score += 150 * gameControllerScript.streak;
-            gameControllerScript.streak++;
             gameControllerScript.checkScore();
+            waveSystem.totalEnemy--;
+            waveSystem.generateWave();
             Die31();
         }
 

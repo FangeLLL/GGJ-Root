@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f0f24278dee43dc4eba9464fb273f439
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - SwordEnemy: {fileID: 8276703400578374500, guid: 5a655d691704ad74db16201b5de74747, type: 3}
+  - GunEnemy: {fileID: 5255134946166372270, guid: 36b2ad011835d134ba20784fb8b9ef3e, type: 3}
+  - cameraTransform: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -35,12 +35,14 @@ public class Enemy : MonoBehaviour
 
 
     GameControllerScript gameControllerScript;
+    WaveSystem waveSystem;
 
 
 
     private void Start()
     {
         gameControllerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameControllerScript>();
+        waveSystem = GameObject.FindGameObjectWithTag("GameController").GetComponent<WaveSystem>();
         healthBar.SetStartingHealth(CurrentHealt);
         damageBar.SetDamageBar(CurrentHealt);
         //postureBar.SetMaxPosture(MaxPosture);
@@ -153,8 +155,9 @@ public class Enemy : MonoBehaviour
                     break;
             }
             gameControllerScript.score += 100 * gameControllerScript.streak;
-            gameControllerScript.streak++;
             gameControllerScript.checkScore();
+            waveSystem.totalEnemy--;
+            waveSystem.generateWave();
             GetComponent<Enemy>().Die();
         }
 
