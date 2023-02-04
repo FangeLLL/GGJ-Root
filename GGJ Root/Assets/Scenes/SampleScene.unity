@@ -481,11 +481,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1106252165 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 923170690363186030, guid: cfe2f769ceb511146ba7f8ec5bfb7b40, type: 3}
-  m_PrefabInstance: {fileID: 448719751075334997}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1185929856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -892,10 +887,14 @@ PrefabInstance:
       propertyPath: SerpilRootoglu6
       value: 
       objectReference: {fileID: 1976115184}
-    - target: {fileID: 5379579360198467149, guid: cfe2f769ceb511146ba7f8ec5bfb7b40, type: 3}
-      propertyPath: familyTreeStatInformer
+    - target: {fileID: 5517532766690546970, guid: cfe2f769ceb511146ba7f8ec5bfb7b40, type: 3}
+      propertyPath: shotsFiredText
       value: 
-      objectReference: {fileID: 5517532766690546970}
+      objectReference: {fileID: 1699370855}
+    - target: {fileID: 5517532766690546970, guid: cfe2f769ceb511146ba7f8ec5bfb7b40, type: 3}
+      propertyPath: enemiesKilledText
+      value: 
+      objectReference: {fileID: 1665363148}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfe2f769ceb511146ba7f8ec5bfb7b40, type: 3}
 --- !u!1001 &574574590655345792
@@ -905,46 +904,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1665363147, guid: 5e38c4dbd541a7247a2aa8e6836e2e74, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1665363147, guid: 5e38c4dbd541a7247a2aa8e6836e2e74, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 157.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1665363147, guid: 5e38c4dbd541a7247a2aa8e6836e2e74, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 36.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1665363148, guid: 5e38c4dbd541a7247a2aa8e6836e2e74, type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1665363148, guid: 5e38c4dbd541a7247a2aa8e6836e2e74, type: 3}
-      propertyPath: m_VerticalAlignment
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 1699370854, guid: 5e38c4dbd541a7247a2aa8e6836e2e74, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1699370854, guid: 5e38c4dbd541a7247a2aa8e6836e2e74, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 157.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1699370854, guid: 5e38c4dbd541a7247a2aa8e6836e2e74, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1699370855, guid: 5e38c4dbd541a7247a2aa8e6836e2e74, type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1699370855, guid: 5e38c4dbd541a7247a2aa8e6836e2e74, type: 3}
-      propertyPath: m_VerticalAlignment
-      value: 512
-      objectReference: {fileID: 0}
     - target: {fileID: 574574590674688912, guid: 5e38c4dbd541a7247a2aa8e6836e2e74, type: 3}
       propertyPath: m_Name
       value: FamilyTreeCanvass
@@ -1365,32 +1324,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5379579360198467149, guid: cfe2f769ceb511146ba7f8ec5bfb7b40, type: 3}
   m_PrefabInstance: {fileID: 448719751075334997}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1106252165}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9f89019e004dae48b2a70c6fd95cbcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5517532766690546970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1106252165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87f6d40c786b39c47bd3d4a143d19532, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraMovement: {fileID: 5517532766690546968}
-  enemiesKilledText: {fileID: 1665363148}
-  shotsFiredText: {fileID: 1699370855}
-  enemiesKilled: 0
-  shotsFired: 0
-  lerpTime: 1
-  bool1: 0
-  bool2: 0
 --- !u!1 &5757520805685408163 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 394722652098174733, guid: 17e6caaa9987feb429ecc09a24699fdb, type: 3}
