@@ -5,12 +5,11 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
-    public float speed = 5f, duration = 5f, deathTime;
+    public float speed, duration = 5f, deathTime;
     public Rigidbody2D rb;
-    public float damage = 5f;
+    public float damage;
     void Start()
     {
-        speed = 5f;
         deathTime = Time.time + duration;
         rb.velocity = transform.up * speed;
         rb=GetComponent<Rigidbody2D>();
@@ -30,10 +29,10 @@ public class Bullet : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "SwordEnemy":
-                collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+                collision.gameObject.GetComponent<Enemy>().TakeDamage(damage,"gun");
                 break;
             case "GunEnemy":
-                collision.gameObject.GetComponent<EnemyGunDying>().TakeDamage(damage);
+                collision.gameObject.GetComponent<EnemyGunDying>().TakeDamage(damage,"gun");
                 break;
             case "Player":
                 //PLAYER DAMAGE

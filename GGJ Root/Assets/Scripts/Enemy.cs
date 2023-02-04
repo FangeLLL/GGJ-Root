@@ -13,14 +13,16 @@ public class Enemy : MonoBehaviour
     public float CurrentHealt;
     //public float CurrentPosture;
     //public float MaxPosture;
-    //public float a;
+    public float a;
     //public bool posturedecrease;
-    //public HealthBar healthBar;
-    //public DamageBar damageBar;
+    public HealthBar healthBar;
+    public DamageBar damageBar;
+    public GameObject healthBarObject;
+    public GameObject damageBarObject;
     //public PostureBar postureBar;
     //public PostureBar postureBar2;
-    //float Timer;
-    //public bool sj;
+    float Timer;
+    public bool sj;
     //public GameObject postureLightMid;
     //public GameObject postureLightNearEnd;
     //public GameObject postureLightEnd;
@@ -31,87 +33,126 @@ public class Enemy : MonoBehaviour
 
 
 
+    GameControllerScript gameControllerScript;
+
+
+
     private void Start()
     {
-        //healthBar.SetStartingHealth(CurrentHealt);
-        //damageBar.SetDamageBar(CurrentHealt);
+        gameControllerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameControllerScript>();
+        healthBar.SetStartingHealth(CurrentHealt);
+        damageBar.SetDamageBar(CurrentHealt);
         //postureBar.SetMaxPosture(MaxPosture);
         //postureBar2.SetMaxPosture(MaxPosture);
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalMaterial = spriteRenderer.material;
     }
 
-    public void TakeDamage(float hpdamage)
+    public void TakeDamage(float hpdamage,string weapon)
     {
         //posturedecrease = false;
         StopAllCoroutines();
         Flash();
         CurrentHealt = CurrentHealt - hpdamage;
-            //CurrentPosture = CurrentPosture + posturedamage;
-            //a = a + posturedamage;
-            //healthBar.TakeDamage(hpdamage);
-            //damageBar.TakeDamage2(hpdamage);
+        //CurrentPosture = CurrentPosture + posturedamage;
+        //a = a + posturedamage;
+        healthBar.TakeDamage(hpdamage);
+        //damageBar.TakeDamage2(hpdamage);
 
-            //POSTURE BAR STUFF
+        //POSTURE BAR STUFF
 
-            /*if (PostureBorder.activeSelf == false && VerticalStick.activeSelf == false && CurrentPosture >= MaxPosture)
-                PostureBorder.SetActive(true);
+        /*if (PostureBorder.activeSelf == false && VerticalStick.activeSelf == false && CurrentPosture >= MaxPosture)
+            PostureBorder.SetActive(true);
 
-            if (PostureBorder.activeSelf == false && VerticalStick.activeSelf == false && CurrentPosture < MaxPosture)
-            {
-                PostureBorder.SetActive(true);
-                VerticalStick.SetActive(true);
-            }*/
+        if (PostureBorder.activeSelf == false && VerticalStick.activeSelf == false && CurrentPosture < MaxPosture)
+        {
+            PostureBorder.SetActive(true);
+            VerticalStick.SetActive(true);
+        }*/
 
-            //DAMAGEBAR STUFF
+        //DAMAGEBAR STUFF
 
-            /*if (damageBar.damageSlider.value > healthBar.slider.value)
-                damageBar.SJ();*/
+        if (damageBar.damageSlider.value > healthBar.slider.value)
+            damageBar.SJ();
 
-            //postureBar.TakePostureDamage(posturedamage);
-            //postureBar2.TakePostureDamage(posturedamage);
+        //postureBar.TakePostureDamage(posturedamage);
+        //postureBar2.TakePostureDamage(posturedamage);
 
-            //POSTURE STUFF
+        //POSTURE STUFF
 
-            /*if (CurrentPosture >= MaxPosture / 2 && posturedecrease == false)
-            {
-                postureLightMid.SetActive(true);
-                postureLightMid.GetComponent<Animator>().SetTrigger(parameterEnterTrigger);
-            }
+        /*if (CurrentPosture >= MaxPosture / 2 && posturedecrease == false)
+        {
+            postureLightMid.SetActive(true);
+            postureLightMid.GetComponent<Animator>().SetTrigger(parameterEnterTrigger);
+        }
 
-            if (CurrentPosture >= MaxPosture - 15 && posturedecrease == false)
-            {
-                StartCoroutine(PostureLightMidExit());
-                postureLightNearEnd.SetActive(true);
-                postureLightNearEnd.GetComponent<Animator>().SetTrigger(parameterEnterTrigger);
-            }
-            if (CurrentPosture >= MaxPosture && posturedecrease == false)
-            {
-                StartCoroutine(PostureLightMidExit());
-                StartCoroutine(PostureLightNearEndExit());
-                postureLightEnd.SetActive(true);
-                postureLightEnd.GetComponent<Animator>().SetTrigger(parameterEnterTrigger);
-            }
+        if (CurrentPosture >= MaxPosture - 15 && posturedecrease == false)
+        {
+            StartCoroutine(PostureLightMidExit());
+            postureLightNearEnd.SetActive(true);
+            postureLightNearEnd.GetComponent<Animator>().SetTrigger(parameterEnterTrigger);
+        }
+        if (CurrentPosture >= MaxPosture && posturedecrease == false)
+        {
+            StartCoroutine(PostureLightMidExit());
+            StartCoroutine(PostureLightNearEndExit());
+            postureLightEnd.SetActive(true);
+            postureLightEnd.GetComponent<Animator>().SetTrigger(parameterEnterTrigger);
+        }
 
-            if (CurrentPosture < MaxPosture)
-            {
-                StartCoroutine(A());
-            }*/
-
-
+        if (CurrentPosture < MaxPosture)
+        {
+            StartCoroutine(A());
+        }*/
 
 
-            //ENEMY DEATH STUF
 
-            //ENEMY STUN DEATH
 
-            /*if (CurrentHealt <= 0 && CurrentPosture >= MaxPosture)
-            {
-                GetComponent<Enemy_Death>().StunDeath();
-            }*/
+        //ENEMY DEATH STUF
+
+        if (CurrentHealt < GameObject.FindGameObjectWithTag("Player").GetComponent<Combat>().hpdamage)
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Combat>().deathblowSound = true;
+        }
+
+        //ENEMY STUN DEATH
+
+        /*if (CurrentHealt <= 0 && CurrentPosture >= MaxPosture)
+        {
+            GetComponent<Enemy_Death>().StunDeath();
+        }*/
+
+        switch (weapon)
+        {
+            case "gun":
+                gameControllerScript.gun.hit++;
+                break;
+            case "magic":
+                gameControllerScript.magic.hit++;
+                break;
+        }
 
         if (CurrentHealt <= 0)
         {
+            switch (weapon)
+            {
+                case "sword":
+                    gameControllerScript.sword.kill++;
+                    gameControllerScript.checkWeaponLevel(gameControllerScript.sword, "sword");
+                    gameControllerScript.checkDamage(gameControllerScript.sword, "sword");
+                    break;
+                case "gun":
+                    gameControllerScript.gun.kill++;
+                    gameControllerScript.checkWeaponLevel(gameControllerScript.gun,"gun");
+                    gameControllerScript.checkDamage(gameControllerScript.gun, "gun");
+                    break;
+                case "magic":
+                    gameControllerScript.magic.kill++;
+                    break;
+            }
+            gameControllerScript.score += 100* gameControllerScript.streak;
+            gameControllerScript.streak++;
+            gameControllerScript.checkScore();
             GetComponent<Enemy>().Die();
         }
 
@@ -137,6 +178,8 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
+        healthBarObject.SetActive(false);
+        damageBarObject.SetActive(false);
         StartCoroutine(DieDelay());
     }
 

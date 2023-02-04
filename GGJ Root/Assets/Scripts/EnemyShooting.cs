@@ -49,7 +49,12 @@ public class EnemyShooting : MonoBehaviour
     {
         yield return new WaitForSeconds(1.6f);
 
-        Instantiate(bulletPreFab, firePoint.position, firePoint.rotation);
+        GameObject bullet = Instantiate(bulletPreFab, firePoint.position, firePoint.rotation);
+
+        bullet.GetComponent<Bullet>().damage = 5;
+       // bullet.GetComponent<Bullet>().speed = -7;
+
+
         /*GameObject bullet = ObjectPool.SharedInstance.GetPooledBullets();
         if (bullet != null)
         {
