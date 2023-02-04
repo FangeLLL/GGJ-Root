@@ -7,7 +7,7 @@ using UnityEngine;
 public class GameControllerScript : MonoBehaviour
 {
 
-   public Combat combat;
+    /*public Combat combat;
 
     public class Spec
     {
@@ -55,37 +55,37 @@ public class GameControllerScript : MonoBehaviour
     {
         if (gun.fire >= 100)
         {
-            checkAccuracy(gun,"gun");
+            checkAccuracy(gun);
             gun.fire = 0;
             gun.hit = 0;
         }
 
         if (magic.fire >= 50)
         {
-            checkAccuracy(magic,"magic");
+            checkAccuracy(magic);
             magic.fire = 0;
             magic.hit = 0;
         }
 
-        checkFireRate(gun,"gun");
-        checkFireRate(magic,"magic");
-        checkFireRate(sword,"sword");
+        checkFireRate(gun);
+        checkFireRate(magic);
+        checkFireRate(sword);
 
-        checkDamage(gun, "gun");
-        checkDamage(magic, "magic");
-        checkDamage(sword,"sword");
+        checkDamage(gun);
+        checkDamage(magic);
+        checkDamage(sword);
 
     }
 
-    private void checkAccuracy(Weapon weapon,string type)
+    private void checkAccuracy(Weapon weapon)
     {
         if (weapon.hit / weapon.fire * weapon.accuracy.definer > weapon.accuracy.barrier)
         {
             weapon.accuracy.add += weapon.accuracy.amount;
 
-            switch (type)
+            switch (weapon)
             {
-                case "gun":
+                case gun:
 
                     switch (weapon.accuracy.add / weapon.accuracy.amount)
                     {
@@ -109,7 +109,7 @@ public class GameControllerScript : MonoBehaviour
 
                     break;
 
-                case "magic":
+                case magic:
 
                     switch (weapon.accuracy.add / weapon.accuracy.amount)
                     {
@@ -140,15 +140,15 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
-    private void checkFireRate(Weapon weapon,string type)
+    private void checkFireRate(Weapon weapon)
     {
         if(weapon.fire_total >= weapon.fireRate.barrier)
         {
             weapon.fireRate.add += weapon.fireRate.amount;
 
-            switch (type)
+            switch (weapon)
             {
-                case "gun":
+                case gun:
 
                     switch (weapon.fireRate.add / weapon.fireRate.amount)
                     {
@@ -170,7 +170,7 @@ public class GameControllerScript : MonoBehaviour
                     //   combat.gun_fireRate += 0.5f;
                     break;
 
-                case "magic":
+                case magic:
 
                     switch (weapon.fireRate.add / weapon.fireRate.amount)
                     {
@@ -192,7 +192,7 @@ public class GameControllerScript : MonoBehaviour
                     //   combat.gun_fireRate += 0.5f;
                     break;
 
-                case "sword":
+                case sword:
 
                     switch (weapon.fireRate.add / weapon.fireRate.amount)
                     {
@@ -220,15 +220,15 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
-    private void checkDamage(Weapon weapon,string type)
+    private void checkDamage(Weapon weapon)
     {
         if (weapon.kill >= weapon.damage.barrier)
         {
             weapon.damage.add += weapon.damage.amount;
 
-            switch (type)
+            switch (weapon)
             {
-                case "gun":
+                case gun:
 
                     switch (weapon.damage.add / weapon.damage.amount)
                     {
@@ -250,7 +250,7 @@ public class GameControllerScript : MonoBehaviour
                     //   combat.gun_fireRate += 0.5f;
                     break;
 
-                case "magic":
+                case magic:
 
                     switch (weapon.damage.add / weapon.damage.amount)
                     {
@@ -272,7 +272,7 @@ public class GameControllerScript : MonoBehaviour
                     //   combat.gun_fireRate += 0.5f;
                     break;
 
-                case "sword":
+                case sword:
 
                     switch (weapon.damage.add / weapon.damage.amount)
                     {
@@ -300,5 +300,5 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
-
+*/
 }
