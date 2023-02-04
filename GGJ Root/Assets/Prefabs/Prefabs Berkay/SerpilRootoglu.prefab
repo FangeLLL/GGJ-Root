@@ -197,7 +197,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!114 &6906138244830367578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,12 +210,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25ee5aace935187429a53fdeb2e3465a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vcam: {fileID: 0}
   firePoint: {fileID: 316456213}
-  bulletPreFab: {fileID: 8448737629597170923, guid: acc71e48fb5a0274fadd057987b1708f, type: 3}
-  gun_accuracy: 0
-  gun_fireRate: 0
-  gun_damage: 0
+  bulletPreFab: {fileID: 285902520165382843, guid: 82489a5c3baf3c8498c5347d08edeecb, type: 3}
   nextFireTime: 0
+  gun_level: 2
+  magic_level: 0
+  sword_level: 0
   animator: {fileID: 0}
   attackPoint: {fileID: 6906138244509504981}
   AttackRadius: 0.5
@@ -223,12 +224,16 @@ MonoBehaviour:
   attackposturedamage: 5
   sarpAttackDirectionCounter: 0
   attackRate: 2
+  deathblowSound: 0
   SwordenemyLayer:
     serializedVersion: 2
     m_Bits: 64
   GunenemyLayer:
     serializedVersion: 2
     m_Bits: 256
+  EnemiesLayer:
+    serializedVersion: 2
+    m_Bits: 320
   BulletLayer:
     serializedVersion: 2
     m_Bits: 0
