@@ -137,6 +137,12 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
+        StartCoroutine(DieDelay());
+    }
+
+    IEnumerator DieDelay()
+    {
+        yield return new WaitForSeconds(.126f);
         Destroy(gameObject);
     }
 

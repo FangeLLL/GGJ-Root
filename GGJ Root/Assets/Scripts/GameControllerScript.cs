@@ -7,7 +7,7 @@ using UnityEngine;
 public class GameControllerScript : MonoBehaviour
 {
 
-    public Combat combat;
+    /*public Combat combat;
 
     public class Spec
     {
@@ -90,16 +90,16 @@ public class GameControllerScript : MonoBehaviour
                     switch (weapon.accuracy.add / weapon.accuracy.amount)
                     {
                         case 1:
-                            weapon.accuracy.barrier = 0.35f
+                            weapon.accuracy.barrier = 0.35f;
                             break;
                         case 2:
-                            weapon.accuracy.barrier = 0.55f
+                            weapon.accuracy.barrier = 0.55f;
                             break;
                         case 3:
-                            weapon.accuracy.barrier = 0.75f
+                            weapon.accuracy.barrier = 0.75f;
                             break;
                         case 4:
-                            weapon.accuracy.barrier = 0.95f
+                            weapon.accuracy.barrier = 0.95f;
                             break;
                     }
 
@@ -114,16 +114,16 @@ public class GameControllerScript : MonoBehaviour
                     switch (weapon.accuracy.add / weapon.accuracy.amount)
                     {
                         case 1:
-                            weapon.accuracy.barrier = 0.35f
+                            weapon.accuracy.barrier = 0.35f;
                             break;
                         case 2:
-                            weapon.accuracy.barrier = 0.55f
+                            weapon.accuracy.barrier = 0.55f;
                             break;
                         case 3:
-                            weapon.accuracy.barrier = 0.75f
+                            weapon.accuracy.barrier = 0.75f;
                             break;
                         case 4:
-                            weapon.accuracy.barrier = 0.95f
+                            weapon.accuracy.barrier = 0.95f;
                             break;
                     }
 
@@ -153,16 +153,16 @@ public class GameControllerScript : MonoBehaviour
                     switch (weapon.fireRate.add / weapon.fireRate.amount)
                     {
                         case 1:
-                            weapon.fireRate.barrier = 150
+                            weapon.fireRate.barrier = 150;
                             break;
                         case 2:
-                            weapon.fireRate.barrier = 200
+                            weapon.fireRate.barrier = 200;
                             break;
                         case 3:
-                            weapon.fireRate.barrier = 250
+                            weapon.fireRate.barrier = 250;
                             break;
                         case 4:
-                            weapon.fireRate.barrier = 300
+                            weapon.fireRate.barrier = 300;
                             break;
                     }
                     // Change of weapon firerate
@@ -175,16 +175,16 @@ public class GameControllerScript : MonoBehaviour
                     switch (weapon.fireRate.add / weapon.fireRate.amount)
                     {
                         case 1:
-                            weapon.fireRate.barrier = 150
+                            weapon.fireRate.barrier = 150;
                             break;
                         case 2:
-                            weapon.fireRate.barrier = 200
+                            weapon.fireRate.barrier = 200;
                             break;
                         case 3:
-                            weapon.fireRate.barrier = 250
+                            weapon.fireRate.barrier = 250;
                             break;
                         case 4:
-                            weapon.fireRate.barrier = 300
+                            weapon.fireRate.barrier = 300;
                             break;
                     }
                     // Change of weapon firerate
@@ -197,16 +197,16 @@ public class GameControllerScript : MonoBehaviour
                     switch (weapon.fireRate.add / weapon.fireRate.amount)
                     {
                         case 1:
-                            weapon.fireRate.barrier = 150
+                            weapon.fireRate.barrier = 150;
                             break;
                         case 2:
-                            weapon.fireRate.barrier = 200
+                            weapon.fireRate.barrier = 200;
                             break;
                         case 3:
-                            weapon.fireRate.barrier = 250
+                            weapon.fireRate.barrier = 250;
                             break;
                         case 4:
-                            weapon.fireRate.barrier = 300
+                            weapon.fireRate.barrier = 300;
                             break;
                     }
                     // Change of weapon firerate
@@ -233,16 +233,16 @@ public class GameControllerScript : MonoBehaviour
                     switch (weapon.damage.add / weapon.damage.amount)
                     {
                         case 1:
-                            weapon.damage.barrier = 15
+                            weapon.damage.barrier = 15;
                             break;
                         case 2:
-                            weapon.damage.barrier = 20
+                            weapon.damage.barrier = 20;
                             break;
                         case 3:
-                            weapon.damage.barrier = 25
+                            weapon.damage.barrier = 25;
                             break;
                         case 4:
-                            weapon.damage.barrier = 30
+                            weapon.damage.barrier = 30;
                             break;
                     }
                     // Change of weapon firerate
@@ -255,16 +255,16 @@ public class GameControllerScript : MonoBehaviour
                     switch (weapon.damage.add / weapon.damage.amount)
                     {
                         case 1:
-                            weapon.damage.barrier = 15
+                            weapon.damage.barrier = 15;
                             break;
                         case 2:
-                            weapon.damage.barrier = 20
+                            weapon.damage.barrier = 20;
                             break;
                         case 3:
-                            weapon.damage.barrier = 25
+                            weapon.damage.barrier = 25;
                             break;
                         case 4:
-                            weapon.damage.barrier = 30
+                            weapon.damage.barrier = 30;
                             break;
                     }
                     // Change of weapon firerate
@@ -277,16 +277,16 @@ public class GameControllerScript : MonoBehaviour
                     switch (weapon.damage.add / weapon.damage.amount)
                     {
                         case 1:
-                            weapon.damage.barrier = 15
+                            weapon.damage.barrier = 15;
                             break;
                         case 2:
-                            weapon.damage.barrier = 20
+                            weapon.damage.barrier = 20;
                             break;
                         case 3:
-                            weapon.damage.barrier = 25
+                            weapon.damage.barrier = 25;
                             break;
                         case 4:
-                            weapon.damage.barrier = 30
+                            weapon.damage.barrier = 30;
                             break;
                     }
                     // Change of weapon firerate
@@ -300,5 +300,5 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
-
+*/
 }

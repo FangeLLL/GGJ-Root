@@ -142,12 +142,19 @@ public class EnemyGunDying : MonoBehaviour
         else
             GetComponent<Enemy_Knockback>().Knockback();
     }
-        void Die31()
-        {
-            Destroy(gameObject);
-        }
+    void Die31()
+    {
+        StartCoroutine(DieDelay());
+    }
 
-        public IEnumerator FlashRoutine()
+    IEnumerator DieDelay()
+    {
+        yield return new WaitForSeconds(.126f);
+        Destroy(gameObject);
+    }
+
+
+    public IEnumerator FlashRoutine()
         {
             spriteRenderer.material = flashMaterial;
             yield return new WaitForSeconds(duration);
