@@ -16,13 +16,13 @@ public class GameControllerScript : MonoBehaviour
 
     public class Spec
     {
-        public float definer, barrier,add,start,amount;
+        public float definer,barrier,add,start,amount;
         
     }
 
     public class Weapon
     {
-        public float hit, fire, fire_total,kill;
+        public float hit, fire, fire_total,kill,hit_total;
         public Spec fireRate = new Spec();
         public Spec damage = new Spec();
         public Spec accuracy = new Spec();
@@ -383,5 +383,29 @@ public class GameControllerScript : MonoBehaviour
         streakText.text = (streak-1).ToString();
         StartCoroutine(textAnimation());
 
+    }
+
+    public void Inheritance()
+    {
+        SpecStartSetting(gun.accuracy);
+        SpecStartSetting(gun.fireRate);
+        SpecStartSetting(gun.damage);
+
+        SpecStartSetting(magic.accuracy);
+        SpecStartSetting(magic.fireRate);
+        SpecStartSetting(magic.damage);
+
+        SpecStartSetting(sword.fireRate);
+        SpecStartSetting(sword.damage);
+
+    }
+
+    private void SpecStartSetting(Spec spec)
+    {
+        if (spec.barrier>spec.start)
+        {
+            spec.start += spec.amount;
+            spec.barrier = spec.start;
+        }
     }
 }

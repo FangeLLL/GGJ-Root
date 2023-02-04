@@ -143,9 +143,11 @@ public class EnemyGunDying : MonoBehaviour
         {
             case "gun":
                 gameControllerScript.gun.hit++;
+                gameControllerScript.gun.hit_total++;
                 break;
             case "magic":
                 gameControllerScript.magic.hit++;
+                gameControllerScript.magic.hit_total++;
                 break;
         }
 
