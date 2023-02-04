@@ -8,7 +8,11 @@ public class Combat : MonoBehaviour
 
     public Transform firePoint;
     public GameObject bulletPreFab;
+<<<<<<< Updated upstream
     public float gun_accuracy, gun_fireRate, gun_damage, nextFireTime;
+=======
+    public float gun_accuracy,gun_fireRate,gun_damage, nextFireTime;
+>>>>>>> Stashed changes
 
 
     //[SerializeField] ParticleSystem particle = null;
@@ -72,7 +76,11 @@ public class Combat : MonoBehaviour
             }
         }
 
+<<<<<<< Updated upstream
 
+=======
+            
+>>>>>>> Stashed changes
         //PARTICLE
         //ParticleStopper();
         if (Time.time >= nextAttackTime)

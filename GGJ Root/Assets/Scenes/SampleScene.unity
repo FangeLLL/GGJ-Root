@@ -1314,6 +1314,7 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+<<<<<<< Updated upstream
     - target: {fileID: 483752568, guid: 4632d8a4820ba004c9e98c5f030b0584, type: 3}
       propertyPath: canvas
       value: 
@@ -1322,6 +1323,12 @@ PrefabInstance:
       propertyPath: cameraMovement
       value: 
       objectReference: {fileID: 1869568376}
+=======
+    - target: {fileID: 2108610518, guid: 4632d8a4820ba004c9e98c5f030b0584, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 6906138244830367552, guid: 4632d8a4820ba004c9e98c5f030b0584, type: 3}
       propertyPath: m_Name
       value: SerpilRootoglu

@@ -1,6 +1,10 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<< Updated upstream
 --- !u!1 &316456212
+=======
+--- !u!1 &2108610517
+>>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,7 +12,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< Updated upstream
   - component: {fileID: 316456213}
+=======
+  - component: {fileID: 2108610518}
+>>>>>>> Stashed changes
   m_Layer: 9
   m_Name: firePoint
   m_TagString: Untagged
@@ -16,15 +24,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< Updated upstream
 --- !u!4 &316456213
+=======
+--- !u!4 &2108610518
+>>>>>>> Stashed changes
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 316456212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
+=======
+  m_GameObject: {fileID: 2108610517}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.99, z: 0}
+>>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -99,7 +117,11 @@ Transform:
   m_Children:
   - {fileID: 6906138244509504981}
   - {fileID: 6906138245765317420}
+<<<<<<< Updated upstream
   - {fileID: 316456213}
+=======
+  - {fileID: 2108610518}
+>>>>>>> Stashed changes
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -210,9 +232,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25ee5aace935187429a53fdeb2e3465a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   firePoint: {fileID: 316456213}
   bulletPreFab: {fileID: 8448737629597170923, guid: acc71e48fb5a0274fadd057987b1708f, type: 3}
   gun_accuracy: 0
+=======
+  firePoint: {fileID: 2108610518}
+  bulletPreFab: {fileID: 3244782476892094222, guid: 3995e326921f62c45be5bc40dd055c23, type: 3}
+  gun_accuracy: 5
+>>>>>>> Stashed changes
   gun_fireRate: 0
   gun_damage: 0
   nextFireTime: 0
