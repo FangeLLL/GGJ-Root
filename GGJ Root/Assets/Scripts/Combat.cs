@@ -5,6 +5,12 @@ using EZCameraShake;
 
 public class Combat : MonoBehaviour
 {
+
+    public Transform firePoint;
+    public GameObject bulletPreFab;
+    public float gun_accuracy, gun_fireRate, gun_damage, nextFireTime;
+
+
     //[SerializeField] ParticleSystem particle = null;
     //[SerializeField] ParticleSystem bloodParticle1 = null;
     //[SerializeField] ParticleSystem bloodParticle2 = null;
@@ -44,11 +50,29 @@ public class Combat : MonoBehaviour
 
     void Start()
     {
-
+        gun_accuracy = 5f;
+        gun_fireRate = 1f;
+        gun_damage = 5f;
     }
 
     void Update()
     {
+        if (Input.GetMouseButtonDown(1))
+        {
+            Shoot();
+        }
+
+        if (Time.time >= nextFireTime)
+        {
+            if (Input.GetMouseButton(1))
+            {
+                Shoot();
+                nextFireTime = Time.time + 1f / gun_fireRate;
+
+            }
+        }
+
+
         //PARTICLE
         //ParticleStopper();
         if (Time.time >= nextAttackTime)
@@ -63,7 +87,7 @@ public class Combat : MonoBehaviour
                 }*/
 
                 //TEMPORARY. YOU SHOULD CALL ATTACK FUNTION IN ATTACK ANIMATION.
-                
+
 
                 sarpAttackDirectionCounter++;
                 Attack();
@@ -84,6 +108,26 @@ public class Combat : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Shoot()
+    {
+        Quaternion rotation = firePoint.rotation;
+        float dif = Random.value / (10 * gun_accuracy);
+
+        if (Random.Range(0, 2) == 0)
+        {
+            rotation.z += dif;
+        }
+        else
+        {
+            rotation.z -= dif;
+        }
+
+        GameObject bullet = Instantiate(bulletPreFab, firePoint.position, rotation);
+
+        bullet.GetComponent<Bullet>().damage = gun_damage;
+
     }
 
     public void Attack()
@@ -127,7 +171,7 @@ public class Combat : MonoBehaviour
                 CameraShaker.Instance.ShakeOnce(7f, 12.5f, .1f, .5f);
 
                 //if (enemy.GetComponent<Enemy>().sj == true)
-                    //enemy.GetComponent<Enemy>().a = 0;
+                //enemy.GetComponent<Enemy>().a = 0;
 
                 //if (enemy.GetComponentInChildren<DamageBar>().damageDecrease == true)
                 //enemy.GetComponentInChildren<DamageBar>().a = 0;

@@ -138,20 +138,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6906138244830367582, guid: 4632d8a4820ba004c9e98c5f030b0584, type: 3}
   m_PrefabInstance: {fileID: 6906138244615763247}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &483752568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 483752559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a28e80016283fa44789f8b53be981abe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraMovement: {fileID: 1869568376}
-  canvas: {fileID: 717208377}
 --- !u!1 &717208377 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4311537259353848020, guid: 5c04b5e74d8c59d489fbc8e4c7d899d4, type: 3}
@@ -428,11 +414,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5255134946166372261, guid: 36b2ad011835d134ba20784fb8b9ef3e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.08
+      value: -1.24
       objectReference: {fileID: 0}
     - target: {fileID: 5255134946166372261, guid: 36b2ad011835d134ba20784fb8b9ef3e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.25
+      value: 2.74
       objectReference: {fileID: 0}
     - target: {fileID: 5255134946166372261, guid: 36b2ad011835d134ba20784fb8b9ef3e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -584,6 +570,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 483752568, guid: 4632d8a4820ba004c9e98c5f030b0584, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 717208377}
+    - target: {fileID: 483752568, guid: 4632d8a4820ba004c9e98c5f030b0584, type: 3}
+      propertyPath: cameraMovement
+      value: 
+      objectReference: {fileID: 1869568376}
     - target: {fileID: 6906138244830367552, guid: 4632d8a4820ba004c9e98c5f030b0584, type: 3}
       propertyPath: m_Name
       value: SerpilRootoglu
