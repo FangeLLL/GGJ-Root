@@ -163,7 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1340366829491498665}
-  - component: {fileID: 1340366829491498664}
+  - component: {fileID: 1445605963}
   m_Layer: 0
   m_Name: CameraHolder
   m_TagString: Untagged
@@ -187,7 +187,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1340366829491498664
+--- !u!114 &1445605963
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab8353b5ebd32545867da143199a814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultPosInfluence: {x: 0, y: 0, z: 0}
+  DefaultPosInfluence: {x: 0.15, y: 0.15, z: 0.15}
   DefaultRotInfluence: {x: 1, y: 1, z: 1}
   RestPositionOffset: {x: 0, y: 0, z: 0}
   RestRotationOffset: {x: 0, y: 0, z: 0}
@@ -214,9 +214,10 @@ GameObject:
   - component: {fileID: 1340366830051883665}
   - component: {fileID: 1340366830051883664}
   - component: {fileID: 1340366830051883667}
+  - component: {fileID: 1340366828941106244}
   m_Layer: 0
   m_Name: CM vcam1
-  m_TagString: Untagged
+  m_TagString: Cinemachine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -292,6 +293,25 @@ MonoBehaviour:
   m_FocusTarget: {fileID: 0}
   m_FocusOffset: 0
   m_Profile: {fileID: 11400000, guid: 2d3d0c12bf2e4a34eb007e67e0ca4a62, type: 2}
+--- !u!114 &1340366828941106244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340366830051883678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e51596a47b4dc5b45b5e4031d951eff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vcam: {fileID: 0}
+  bulletHitShake: 0
+  bulletKillShake: 0
+  swordHitShake: 0
+  swordKillShake: 0
+  shoot: 0
+  b: 0
 --- !u!1 &1340366830248138901
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +323,7 @@ GameObject:
   - component: {fileID: 1340366830248138900}
   - component: {fileID: 1340366830248138902}
   - component: {fileID: 1340366830248138903}
+  - component: {fileID: 1340366828941106242}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -380,3 +401,20 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
+--- !u!114 &1340366828941106242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340366830248138901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
+  mNoiseOffsets: {x: 0, y: 0, z: 0}

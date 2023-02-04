@@ -6,6 +6,8 @@ using UnityEngine.Rendering.Universal;
 
 public class EnemyGunDying : MonoBehaviour
 {
+    GameControllerScript gameControllerScript;
+
     [SerializeField] private Material flashMaterial;
     [SerializeField] private float duration;
     private SpriteRenderer spriteRenderer;
@@ -38,8 +40,10 @@ public class EnemyGunDying : MonoBehaviour
     //bool c;
 
     //public float a;
-    //public HealthBar healthBar;
-    //public DamageBar damageBar;
+    public HealthBar healthBar;
+    public DamageBar damageBar;
+    public GameObject healthBarObject;
+    public GameObject damageBarObject;
     //public PostureBarGunEnemy postureBar;
     //public PostureBarGunEnemy postureBar2;
     //public bool sj;
@@ -67,14 +71,15 @@ public class EnemyGunDying : MonoBehaviour
 
         //DAMAGE BAR
 
-        /*healthBar.SetStartingHealth(CurrentHealt);
+        healthBar.SetStartingHealth(CurrentHealt);
         damageBar.SetDamageBar(CurrentHealt);
-        postureBar.SetMaxPosture(MaxPosture);
-        postureBar2.SetMaxPosture(MaxPosture);*/
+        //postureBar.SetMaxPosture(MaxPosture);
+        //postureBar2.SetMaxPosture(MaxPosture);
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalMaterial = spriteRenderer.material;
+        gameControllerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameControllerScript>();
     }
-    public void TakeDamage(float hpdamage)
+    public void TakeDamage(float hpdamage,string weapon)
     {
         //posturedecrease = false;
         StopAllCoroutines();
@@ -82,11 +87,11 @@ public class EnemyGunDying : MonoBehaviour
         CurrentHealt = CurrentHealt - hpdamage;
 
         //a = a + posturedamage;
-        //healthBar.TakeDamage(hpdamage);
+        healthBar.TakeDamage(hpdamage);
         //damageBar.TakeDamage2(hpdamage);
 
-        /*if (damageBar.damageSlider.value > healthBar.slider.value)
-            damageBar.SJ();*/
+        if (damageBar.damageSlider.value > healthBar.slider.value)
+            damageBar.SJ();
 
         //postureBar.TakePostureDamage(posturedamage);
         //postureBar2.TakePostureDamage(posturedamage);
@@ -124,8 +129,44 @@ public class EnemyGunDying : MonoBehaviour
             //StunDeath
         }
         */
+
+        if (CurrentHealt < GameObject.FindGameObjectWithTag("Player").GetComponent<Combat>().hpdamage)
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Combat>().deathblowSound = true;
+        }
+
+        switch (weapon)
+        {
+            case "gun":
+                gameControllerScript.gun.hit++;
+                break;
+            case "magic":
+                gameControllerScript.magic.hit++;
+                break;
+        }
+
+
         if (CurrentHealt <= 0)
         {
+            switch (weapon)
+            {
+                case "sword":
+                    gameControllerScript.sword.kill++;
+                    gameControllerScript.checkWeaponLevel(gameControllerScript.sword, "sword");
+                    gameControllerScript.checkDamage(gameControllerScript.sword, "sword");
+                    break;
+                case "gun":
+                    gameControllerScript.gun.kill++;
+                    gameControllerScript.checkWeaponLevel(gameControllerScript.gun, "gun");
+                    gameControllerScript.checkDamage(gameControllerScript.gun, "gun");
+                    break;
+                case "magic":
+                    gameControllerScript.magic.kill++;
+                    break;
+            }
+            gameControllerScript.score += 150 * gameControllerScript.streak;
+            gameControllerScript.streak++;
+            gameControllerScript.checkScore();
             Die31();
         }
 
@@ -144,6 +185,8 @@ public class EnemyGunDying : MonoBehaviour
     }
     void Die31()
     {
+        healthBarObject.SetActive(false);
+        damageBarObject.SetActive(false);
         StartCoroutine(DieDelay());
     }
 

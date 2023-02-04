@@ -2,13 +2,65 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EZCameraShake;
+using Cinemachine;
+using EZCameraShake;
+using static GameControllerScript;
+using static Combat;
 
 public class Combat : MonoBehaviour
 {
 
+    [SerializeField] CinemachineVirtualCamera vcam;
+    CinemachineBasicMultiChannelPerlin noise;
+
     public Transform firePoint;
     public GameObject bulletPreFab;
-    public float gun_accuracy, gun_fireRate, gun_damage, nextFireTime;
+    public float nextFireTime;
+    public int gun_level, magic_level, sword_level;
+
+    public class Gun
+    {
+        public float accuracy, fireRate, damage, bulletSpeed;
+        public bool auto;
+
+        public Gun(float acc, float fireR, float dam, float bulletS, bool aut)
+        {
+            accuracy = acc;
+            fireRate = fireR;
+            damage = dam;
+            bulletSpeed = bulletS;
+            auto = aut;
+        }
+
+    }
+
+    public Gun currentGun;
+
+    public Gun pistol = new Gun(2, 2, 20, 7, false);
+    public Gun machineGun = new Gun(1, 7, 20, 7, true);
+    public Gun doublePistol = new Gun(1.5f, 4, 2, 7, false);
+    public Gun rifle = new Gun(2, 1, 5, 20, false);
+
+    public class Sword
+    {
+        public float speed, damage, size;
+
+        public Sword(float spee, float dam, float siz)
+        {
+            speed = spee;
+            damage = dam;
+            size = siz;
+        }
+
+    }
+
+    public Sword currentSword;
+
+    public Sword branch = new Sword(2f, 5f, 0.5f);
+    public Sword bat = new Sword(2f, 7f, 0.7f);
+    public Sword knife = new Sword(3f, 8f, 0.6f);
+
+    GameControllerScript gameControllerScript;
 
 
     //[SerializeField] ParticleSystem particle = null;
@@ -36,11 +88,11 @@ public class Combat : MonoBehaviour
     //public float deflectRate = 2f;
     //float nextDeflectTime = 0f;
     //public bool camZoom;
-    //public bool deathblowSound;
+    public bool deathblowSound;
 
     public LayerMask SwordenemyLayer;
     public LayerMask GunenemyLayer;
-    //public LayerMask EnemiesLayer;
+    public LayerMask EnemiesLayer;
     //public LayerMask BossLayer;
     public LayerMask BulletLayer;
     //public LayerMask SwordLayer;
@@ -50,24 +102,46 @@ public class Combat : MonoBehaviour
 
     void Start()
     {
-        gun_accuracy = 5f;
-        gun_fireRate = 1f;
-        gun_damage = 5f;
+        vcam = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
+        noise = vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+        gameControllerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameControllerScript>();
+
+        currentGun = pistol;
+        currentGun.damage += gameControllerScript.gun.damage.add;
+        currentGun.accuracy += gameControllerScript.gun.accuracy.add;
+        currentGun.fireRate += gameControllerScript.gun.fireRate.add;
+        gun_level = 0;
+        gameControllerScript.gun.accuracy.definer = 1;
+
+        currentSword = branch;
+        currentSword.damage += gameControllerScript.sword.damage.add;
+        currentSword.speed += gameControllerScript.sword.fireRate.add;
+        sword_level = 0;
+        AttackRadius = currentSword.size;
+        hpdamage = currentSword.damage;
+        attackRate = currentSword.speed;
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+
+        if (Time.time >= nextFireTime)
         {
-            Shoot();
+            if (Input.GetMouseButtonDown(1) && !currentGun.auto)
+            {
+                Shoot();
+                nextFireTime = Time.time + 1f / currentGun.fireRate;
+
+            }
         }
 
         if (Time.time >= nextFireTime)
         {
-            if (Input.GetMouseButton(1))
+            if (Input.GetMouseButton(1) && currentGun.auto)
             {
                 Shoot();
-                nextFireTime = Time.time + 1f / gun_fireRate;
+                nextFireTime = Time.time + 1f / currentGun.fireRate;
 
             }
         }
@@ -92,7 +166,7 @@ public class Combat : MonoBehaviour
                 sarpAttackDirectionCounter++;
                 Attack();
                 //DEATHBLOW
-                //DeathblowBeforeAttack();
+                DeathblowBeforeAttack();
                 nextAttackTime = Time.time + 1f / attackRate;
                 if (sarpAttackDirectionCounter % 2 == 0)
                 {
@@ -110,10 +184,76 @@ public class Combat : MonoBehaviour
         }
     }
 
+    public void levelUpWeapon(string weapon)
+    {
+        switch (weapon)
+        {
+            case "gun":
+                Debug.Log(gun_level);
+
+                gun_level++;
+                switch (gun_level)
+                {
+                    case 1:
+                        Debug.Log("Machine Gun");
+                        currentGun = machineGun;
+                        gameControllerScript.gun.accuracy.definer = 2;
+                        break;
+                    case 2:
+                        Debug.Log("doublePistol");
+                        currentGun = doublePistol;
+                        gameControllerScript.gun.accuracy.definer = 1.5f;
+                        break;
+                    case 3:
+                        Debug.Log("rifle");
+                        currentGun = rifle;
+                        gameControllerScript.gun.accuracy.definer = 1;
+                        break;
+
+                }
+                currentGun.damage += gameControllerScript.gun.damage.add;
+                currentGun.accuracy += gameControllerScript.gun.accuracy.add;
+                currentGun.fireRate += gameControllerScript.gun.fireRate.add;
+                break;
+            case "magic":
+                magic_level++;
+                switch (magic_level)
+                {
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                }
+                break;
+            case "sword":
+                sword_level++;
+                switch (sword_level)
+                {
+                    case 1:
+                        Debug.Log("bat");
+                        currentSword = bat;
+                        break;
+                    case 2:
+                        Debug.Log("knife");
+                        currentSword = knife;
+                        break;
+                }
+                currentSword.damage += gameControllerScript.sword.damage.add;
+                currentSword.speed += gameControllerScript.sword.fireRate.add;
+                AttackRadius = currentSword.size;
+                hpdamage = currentSword.damage;
+                attackRate = currentSword.speed;
+                break;
+        }
+    }
+
     public void Shoot()
     {
+        GameObject.FindGameObjectWithTag("Cinemachine").GetComponent<CameraShake2>().Noise(3f, 3f);
+        GameObject.FindGameObjectWithTag("Cinemachine").GetComponent<CameraShake2>().shoot = true;
+
         Quaternion rotation = firePoint.rotation;
-        float dif = Random.value / (10 * gun_accuracy);
+        float dif = Random.value / (10 * currentGun.accuracy);
 
         if (Random.Range(0, 2) == 0)
         {
@@ -126,7 +266,26 @@ public class Combat : MonoBehaviour
 
         GameObject bullet = Instantiate(bulletPreFab, firePoint.position, rotation);
 
-        bullet.GetComponent<Bullet>().damage = gun_damage;
+        bullet.GetComponent<Bullet>().damage = currentGun.damage;
+        bullet.GetComponent<Bullet>().speed = currentGun.bulletSpeed;
+
+        gameControllerScript.gun.fire++;
+        gameControllerScript.gun.fire_total++;
+        gameControllerScript.checkFireRate(gameControllerScript.gun, "gun");
+
+        if (gameControllerScript.gun.fire >= 10)
+        {
+            gameControllerScript.checkAccuracy(gameControllerScript.gun, "gun");
+            gameControllerScript.gun.fire = 0;
+            gameControllerScript.gun.hit = 0;
+        }
+
+        if (gameControllerScript.magic.fire >= 50)
+        {
+            gameControllerScript.checkAccuracy(gameControllerScript.magic, "magic");
+            gameControllerScript.magic.fire = 0;
+            gameControllerScript.magic.hit = 0;
+        }
 
     }
 
@@ -137,6 +296,8 @@ public class Combat : MonoBehaviour
 
         foreach (Collider2D enemy in hitswordenemy)
         {
+            gameControllerScript.sword.fire_total++;
+            gameControllerScript.checkFireRate(gameControllerScript.sword, "sword");
             //SWORD ENEMY ATTACK STUN STUFF
 
             /*if (GameObject.Find("GameController").GetComponent<StunCounter>().counter == 1)
@@ -154,7 +315,7 @@ public class Combat : MonoBehaviour
 
             if (0 >= enemy.GetComponent<Enemy>().CurrentHealt - hpdamage)
             {
-                enemy.GetComponent<Enemy>().TakeDamage(hpdamage);
+                enemy.GetComponent<Enemy>().TakeDamage(hpdamage, "sword");
                 //if(enemy.GetComponentInChildren<DamageBar>().damageDecrease==true)
                 //enemy.GetComponentInChildren<DamageBar>().a = 0;
                 //enemy.GetComponent<Enemy>().TakeDamage(hpdamage, attackposturedamage);
@@ -166,7 +327,7 @@ public class Combat : MonoBehaviour
 
             else
             {
-                enemy.GetComponent<Enemy>().TakeDamage(hpdamage);
+                enemy.GetComponent<Enemy>().TakeDamage(hpdamage, "sword");
                 //GameObject.Find("EnemySoundRandomizer 1").GetComponent<EnemyDeathSoundRandomizer>().SarpHitEnemy();
                 CameraShaker.Instance.ShakeOnce(7f, 12.5f, .1f, .5f);
 
@@ -220,7 +381,7 @@ public class Combat : MonoBehaviour
 
             if (0 >= enemy.GetComponent<EnemyGunDying>().CurrentHealt - hpdamage)
             {
-                enemy.GetComponent<EnemyGunDying>().TakeDamage(hpdamage);
+                enemy.GetComponent<EnemyGunDying>().TakeDamage(hpdamage, "sword");
                 CameraShaker.Instance.ShakeOnce(10f, 50f, .1f, 1f);
             }
 
@@ -228,7 +389,7 @@ public class Combat : MonoBehaviour
 
             else
             {
-                enemy.GetComponent<EnemyGunDying>().TakeDamage(hpdamage);
+                enemy.GetComponent<EnemyGunDying>().TakeDamage(hpdamage, "sword");
                 //GameObject.Find("GunEnemySoundRandomizer 1").GetComponent<EnemyGunRandomizerTemp>().SarpHitEnemy2();
                 CameraShaker.Instance.ShakeOnce(7f, 12.5f, .1f, .5f);
 
@@ -267,6 +428,22 @@ public class Combat : MonoBehaviour
             //BloodParticlePlay();
         }*/
 
+    }
+
+    void DeathblowBeforeAttack()
+    {
+        Collider2D[] hitswordenemy = Physics2D.OverlapCircleAll(attackPoint.position, AttackRadius, EnemiesLayer);
+
+        foreach (Collider2D enemy in hitswordenemy)
+        {
+            if (deathblowSound)
+            {
+                Debug.Log("DeathBlow Sound");
+                deathblowSound = false;
+            }
+
+            //GetComponentInChildren<SarpSwingsSword>().Deathblow();
+        }
     }
 
     private void OnDrawGizmos()
