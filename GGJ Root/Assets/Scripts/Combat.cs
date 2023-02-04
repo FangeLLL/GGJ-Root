@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using EZCameraShake;
 using Cinemachine;
-using EZCameraShake;
 using static GameControllerScript;
 using static Combat;
 
@@ -12,6 +11,8 @@ public class Combat : MonoBehaviour
 
     [SerializeField] CinemachineVirtualCamera vcam;
     CinemachineBasicMultiChannelPerlin noise;
+
+    public CameraShake3 cs3;
 
     public Transform firePoint;
     public GameObject bulletPreFab;
@@ -248,8 +249,10 @@ public class Combat : MonoBehaviour
 
     public void Shoot()
     {
-        GameObject.FindGameObjectWithTag("Cinemachine").GetComponent<CameraShake2>().Noise(3f, 3f);
-        GameObject.FindGameObjectWithTag("Cinemachine").GetComponent<CameraShake2>().shoot = true;
+        //GameObject.FindGameObjectWithTag("Cinemachine").GetComponent<CameraShake2>().Noise(3f, 3f);
+        //GameObject.FindGameObjectWithTag("Cinemachine").GetComponent<CameraShake2>().shoot = true;
+        //cs3.StartCoroutine(cs3.Shake(.15f, .4f));
+
 
         Quaternion rotation = firePoint.rotation;
         float dif = Random.value / (10 * currentGun.accuracy);

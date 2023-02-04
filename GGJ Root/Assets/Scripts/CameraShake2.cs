@@ -96,7 +96,7 @@ public class CameraShake2 : MonoBehaviour
 
     IEnumerator lerpzerohit()
     {
-        yield return new WaitForSeconds(.6f);
+        yield return new WaitForSeconds(.8f);
         noise.m_AmplitudeGain = 0;
         noise.m_FrequencyGain = 0;
     }
