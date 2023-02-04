@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
         speed = 5f;
         deathTime = Time.time + duration;
         rb.velocity = transform.up * speed;
-
+        rb=GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -34,6 +34,10 @@ public class Bullet : MonoBehaviour
                 break;
             case "GunEnemy":
                 collision.gameObject.GetComponent<EnemyGunDying>().TakeDamage(damage);
+                break;
+            case "Player":
+                //PLAYER DAMAGE
+                Debug.Log("Player Die Gun Enemy");
                 break;
         }
 
