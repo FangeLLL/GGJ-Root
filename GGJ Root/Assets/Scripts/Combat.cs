@@ -249,9 +249,8 @@ public class Combat : MonoBehaviour
 
     public void Shoot()
     {
-        //GameObject.FindGameObjectWithTag("Cinemachine").GetComponent<CameraShake2>().Noise(3f, 3f);
-        //GameObject.FindGameObjectWithTag("Cinemachine").GetComponent<CameraShake2>().shoot = true;
-        //cs3.StartCoroutine(cs3.Shake(.15f, .4f));
+        GameObject.FindGameObjectWithTag("Cinemachine").GetComponent<CameraShake2>().Noise(3f, 3f);
+        GameObject.FindGameObjectWithTag("Cinemachine").GetComponent<CameraShake2>().shoot = true;
 
 
         Quaternion rotation = firePoint.rotation;

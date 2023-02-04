@@ -77,9 +77,9 @@ public class CameraShake2 : MonoBehaviour
         {
             StopAllCoroutines();
             StartCoroutine(lerpzerohit());
-            noise.m_AmplitudeGain = Mathf.Lerp(noise.m_AmplitudeGain, 0, b / 40f);
-            noise.m_FrequencyGain = Mathf.Lerp(noise.m_FrequencyGain, 0, b / 40f);
-            b += Time.deltaTime;
+            noise.m_AmplitudeGain = Mathf.Lerp(noise.m_AmplitudeGain, 0, (Time.time - b) / 1f);
+            noise.m_FrequencyGain = Mathf.Lerp(noise.m_FrequencyGain, 0, (Time.time - b) / 1f);
+            
             if (noise.m_FrequencyGain == 0 && noise.m_AmplitudeGain == 0)
             {
                 shoot = false;
@@ -89,14 +89,14 @@ public class CameraShake2 : MonoBehaviour
 
     public void Noise(float amplitudeGain, float frequencyGain)
     {
-        
+        b = Time.time;
         noise.m_AmplitudeGain = amplitudeGain;
         noise.m_FrequencyGain = frequencyGain;
     }
 
     IEnumerator lerpzerohit()
     {
-        yield return new WaitForSeconds(.8f);
+        yield return new WaitForSeconds(.3f);
         noise.m_AmplitudeGain = 0;
         noise.m_FrequencyGain = 0;
     }

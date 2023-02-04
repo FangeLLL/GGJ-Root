@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 450588332}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.46, z: 0}
+  m_LocalPosition: {x: 0, y: 1.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -185,8 +185,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: f9d03acff91f72b4892f04ed01222267, type: 2}
   duration: 0.125
-  CurrentHealt: 15
   col: {fileID: 5255134946166372257}
+  CurrentHealt: 15
+  col2: {fileID: 0}
   healthBar: {fileID: 3085133237687936034}
   damageBar: {fileID: 4923095471765690414}
   healthBarObject: {fileID: 3085133237687936060}
