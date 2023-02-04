@@ -14,6 +14,7 @@ public class EnemyGunDying : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Material originalMaterial;
     private Coroutine flashRoutine;
+    public BoxCollider2D col;
 
     public float CurrentHealt;
     //public float MaxPosture;
@@ -37,7 +38,7 @@ public class EnemyGunDying : MonoBehaviour
     //int parametreStunTriggerExit = Animator.StringToHash("StunExit");
     //int parametreFadeInTrigger = Animator.StringToHash("FadeIn");
     //int parametreFadeOutTrigger = Animator.StringToHash("FadeOut");
-    public Collider2D col;
+    public Collider2D col2;
     //bool c;
 
     //public float a;
@@ -80,6 +81,7 @@ public class EnemyGunDying : MonoBehaviour
         originalMaterial = spriteRenderer.material;
         gameControllerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameControllerScript>();
         waveSystem = GameObject.FindGameObjectWithTag("GameController").GetComponent<WaveSystem>();
+        col2 = GetComponent<BoxCollider2D>();
     }
     public void TakeDamage(float hpdamage,string weapon)
     {
@@ -188,6 +190,7 @@ public class EnemyGunDying : MonoBehaviour
     }
     void Die31()
     {
+        col2.enabled = false;
         healthBarObject.SetActive(false);
         damageBarObject.SetActive(false);
         StartCoroutine(DieDelay());

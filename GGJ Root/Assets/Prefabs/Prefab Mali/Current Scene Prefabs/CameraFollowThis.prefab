@@ -61,12 +61,21 @@ MonoBehaviour:
   SerpilRootoglu4: {fileID: 0}
   SerpilRootoglu5: {fileID: 0}
   SerpilRootoglu6: {fileID: 0}
+  CenterizeCam1: {fileID: 0}
+  CenterizeCam2: {fileID: 0}
+  CenterizeCam3: {fileID: 0}
+  CenterizeCam4: {fileID: 0}
+  CenterizeCam5: {fileID: 0}
+  CenterizeCam6: {fileID: 0}
   moveSpeed: 2
   DeathCounterforChildParrentSet: 0
   moveCamera: 0
   setpositiontoparent: 0
   fadeImage: {fileID: 0}
   vcam: {fileID: 0}
+  vcam2: {fileID: 0}
+  CameraHolder1: {fileID: 0}
+  CameraHolder2: {fileID: 0}
 --- !u!114 &5517532766690546970
 MonoBehaviour:
   m_ObjectHideFlags: 0

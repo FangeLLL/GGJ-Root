@@ -23,6 +23,12 @@ public class CameraMovement : MonoBehaviour
     public GameObject SerpilRootoglu4;
     public GameObject SerpilRootoglu5;
     public GameObject SerpilRootoglu6;
+    public GameObject CenterizeCam1;
+    public GameObject CenterizeCam2;
+    public GameObject CenterizeCam3;
+    public GameObject CenterizeCam4;
+    public GameObject CenterizeCam5;
+    public GameObject CenterizeCam6;
     Vector3 deathpositiontracker;
     public float moveSpeed = 2f;
     public float DeathCounterforChildParrentSet;
@@ -32,6 +38,10 @@ public class CameraMovement : MonoBehaviour
     private bool b = true;
     public Image fadeImage;
     [SerializeField] CinemachineVirtualCamera vcam;
+    [SerializeField] CinemachineVirtualCamera vcam2;
+    public GameObject CameraHolder1;
+    public GameObject CameraHolder2;
+
 
     private void Start()
     {
@@ -44,7 +54,7 @@ public class CameraMovement : MonoBehaviour
         if (moveCamera)
         {
             transform.position = Vector3.Lerp(transform.position, Child.position, moveSpeed * Time.deltaTime);
-            vcam.m_Follow = this.transform;
+            vcam2.m_Follow = this.transform;
             if (Vector3.Distance(transform.position, Child.position) <= 0.2f)
             {
                 if (b)
@@ -56,7 +66,7 @@ public class CameraMovement : MonoBehaviour
         }
         if (setpositiontoparent)
         {
-            vcam.m_Follow = Parent.transform;
+            vcam2.m_Follow = Parent.transform;
         }
         if (setpositiontochild)
         {
@@ -98,6 +108,8 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
             SerpilRootoglu2.transform.position = deathpositiontracker;
             SerpilRootoglu2.GetComponent<PlayerMovement>().enabled = true;
+            CameraHolder1.SetActive(true);
+            CameraHolder2.SetActive(false);
             yield return new WaitForSeconds(0.25f);
             setpositiontochild = true;
             yield return new WaitForSeconds(1f);
@@ -115,6 +127,8 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
             SerpilRootoglu3.transform.position = deathpositiontracker;
             SerpilRootoglu3.GetComponent<PlayerMovement>().enabled = true;
+            CameraHolder1.SetActive(true);
+            CameraHolder2.SetActive(false);
             yield return new WaitForSeconds(0.25f);
             setpositiontochild = true;
             yield return new WaitForSeconds(1f);
@@ -132,6 +146,8 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
             SerpilRootoglu4.transform.position = deathpositiontracker;
             SerpilRootoglu4.GetComponent<PlayerMovement>().enabled = true;
+            CameraHolder1.SetActive(true);
+            CameraHolder2.SetActive(false);
             yield return new WaitForSeconds(0.25f);
             setpositiontochild = true;
             yield return new WaitForSeconds(1f);
@@ -149,6 +165,8 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
             SerpilRootoglu5.transform.position = deathpositiontracker;
             SerpilRootoglu5.GetComponent<PlayerMovement>().enabled = true;
+            CameraHolder1.SetActive(true);
+            CameraHolder2.SetActive(false);
             yield return new WaitForSeconds(0.25f);
             setpositiontochild = true;
             yield return new WaitForSeconds(1f);
@@ -166,6 +184,8 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
             SerpilRootoglu6.transform.position = deathpositiontracker;
             SerpilRootoglu6.GetComponent<PlayerMovement>().enabled = true;
+            CameraHolder1.SetActive(true);
+            CameraHolder2.SetActive(false);
             yield return new WaitForSeconds(0.25f);
             setpositiontochild = true;
             yield return new WaitForSeconds(1f);
@@ -196,7 +216,7 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
 
             deathpositiontracker = SerpilRootoglu1.transform.position;
-            Parent = PhotoFrame1.transform;
+            Parent = CenterizeCam1.transform;
             transform.position = Parent.position;
             SerpilRootoglu1.transform.position = new Vector3(PhotoFrame1.transform.position.x, PhotoFrame1.transform.position.y, -5f);
             Child = PhotoFrame2.transform;
@@ -204,7 +224,8 @@ public class CameraMovement : MonoBehaviour
             PhotoFrame2.SetActive(true);
             SerpilRootoglu2.SetActive(true);
             SerpilRootoglu2.GetComponent<PlayerMovement>().enabled = false;
-
+            CameraHolder1.SetActive(false);
+            CameraHolder2.SetActive(true);
 
             yield return new WaitForSeconds(0.25f);
 
@@ -217,13 +238,6 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(.25f);
 
             familyTreeStatInformer.OnPlayerDeath();
-
-            //yield return new WaitForSeconds(3.75f);
-
-            //moveCamera = true;
-            //setpositiontoparent = false;
-
-            //yield return null;
         }
 
         else if (DeathCounterforChildParrentSet == 2)
@@ -236,7 +250,7 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
 
             deathpositiontracker = SerpilRootoglu2.transform.position;
-            Parent = PhotoFrame2.transform;
+            Parent = CenterizeCam2.transform;
             transform.position = Parent.position;
             SerpilRootoglu2.transform.position = new Vector3(PhotoFrame2.transform.position.x, PhotoFrame2.transform.position.y, -5f);
             Child = PhotoFrame3.transform;
@@ -244,6 +258,8 @@ public class CameraMovement : MonoBehaviour
             PhotoFrame3.SetActive(true);
             SerpilRootoglu3.SetActive(true);
             SerpilRootoglu3.GetComponent<PlayerMovement>().enabled = false;
+            CameraHolder1.SetActive(false);
+            CameraHolder2.SetActive(true);
 
 
             yield return new WaitForSeconds(0.25f);
@@ -276,7 +292,7 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
 
             deathpositiontracker = SerpilRootoglu3.transform.position;
-            Parent = PhotoFrame3.transform;
+            Parent = CenterizeCam3.transform;
             transform.position = Parent.position;
             SerpilRootoglu3.transform.position = new Vector3(PhotoFrame3.transform.position.x, PhotoFrame3.transform.position.y, -5f);
             Child = PhotoFrame4.transform;
@@ -284,6 +300,8 @@ public class CameraMovement : MonoBehaviour
             PhotoFrame4.SetActive(true);
             SerpilRootoglu4.SetActive(true);
             SerpilRootoglu4.GetComponent<PlayerMovement>().enabled = false;
+            CameraHolder1.SetActive(false);
+            CameraHolder2.SetActive(true);
 
 
             yield return new WaitForSeconds(0.25f);
@@ -316,7 +334,7 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
 
             deathpositiontracker = SerpilRootoglu4.transform.position;
-            Parent = PhotoFrame4.transform;
+            Parent = CenterizeCam4.transform;
             transform.position = Parent.position;
             SerpilRootoglu4.transform.position = new Vector3(PhotoFrame4.transform.position.x, PhotoFrame4.transform.position.y, -5f);
             Child = PhotoFrame5.transform;
@@ -324,6 +342,8 @@ public class CameraMovement : MonoBehaviour
             PhotoFrame5.SetActive(true);
             SerpilRootoglu5.SetActive(true);
             SerpilRootoglu5.GetComponent<PlayerMovement>().enabled = false;
+            CameraHolder1.SetActive(false);
+            CameraHolder2.SetActive(true);
 
 
             yield return new WaitForSeconds(0.25f);
@@ -356,7 +376,7 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
 
             deathpositiontracker = SerpilRootoglu5.transform.position;
-            Parent = PhotoFrame5.transform;
+            Parent = CenterizeCam5.transform;
             transform.position = Parent.position;
             SerpilRootoglu5.transform.position = new Vector3(PhotoFrame5.transform.position.x, PhotoFrame5.transform.position.y, -5f);
             Child = PhotoFrame6.transform;
@@ -364,6 +384,8 @@ public class CameraMovement : MonoBehaviour
             PhotoFrame6.SetActive(true);
             SerpilRootoglu6.SetActive(true);
             SerpilRootoglu6.GetComponent<PlayerMovement>().enabled = false;
+            CameraHolder1.SetActive(false);
+            CameraHolder2.SetActive(true);
 
 
             yield return new WaitForSeconds(0.25f);

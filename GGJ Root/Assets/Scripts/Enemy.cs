@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Material originalMaterial;
     private Coroutine flashRoutine;
+    public BoxCollider2D col;
     public float CurrentHealt;
     //public float CurrentPosture;
     //public float MaxPosture;
@@ -48,6 +49,7 @@ public class Enemy : MonoBehaviour
         //postureBar2.SetMaxPosture(MaxPosture);
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalMaterial = spriteRenderer.material;
+        col = GetComponent<BoxCollider2D>();
     }
 
     public void TakeDamage(float hpdamage, string weapon)
@@ -181,6 +183,7 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
+        col.enabled = false;
         healthBarObject.SetActive(false);
         damageBarObject.SetActive(false);
         StartCoroutine(DieDelay());
