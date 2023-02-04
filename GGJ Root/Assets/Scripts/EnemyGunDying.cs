@@ -198,18 +198,18 @@ public class EnemyGunDying : MonoBehaviour
 
 
     public IEnumerator FlashRoutine()
-        {
-            spriteRenderer.material = flashMaterial;
-            yield return new WaitForSeconds(duration);
-            spriteRenderer.material = originalMaterial;
-            flashRoutine = null;
-        }       
-
-        public void Flash()
-        {
-            if (flashRoutine != null)
-                StopCoroutine(flashRoutine);
-
-            flashRoutine = StartCoroutine(FlashRoutine());
-        }
+    {
+        spriteRenderer.material = flashMaterial;
+        yield return new WaitForSeconds(duration);
+        spriteRenderer.material = originalMaterial;
+        flashRoutine = null;
     }
+
+    public void Flash()
+    {
+        if (flashRoutine != null)
+            StopCoroutine(flashRoutine);
+
+        flashRoutine = StartCoroutine(FlashRoutine());
+    }
+}

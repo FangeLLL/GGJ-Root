@@ -212,11 +212,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vcam: {fileID: 0}
   firePoint: {fileID: 316456213}
-  bulletPreFab: {fileID: 8448737629597170923, guid: acc71e48fb5a0274fadd057987b1708f, type: 3}
-  gun_accuracy: 0
-  gun_fireRate: 0
-  gun_damage: 0
+  bulletPreFab: {fileID: 285902520165382843, guid: 82489a5c3baf3c8498c5347d08edeecb, type: 3}
   nextFireTime: 0
+  gun_level: 2
+  magic_level: 0
+  sword_level: 0
   animator: {fileID: 0}
   attackPoint: {fileID: 6906138244509504981}
   AttackRadius: 0.5

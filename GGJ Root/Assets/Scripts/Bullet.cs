@@ -12,12 +12,11 @@ public class Bullet : MonoBehaviour
 
     public GameObject shake;
 
-    public float speed = 5f, duration = 5f, deathTime;
+    public float speed, duration = 5f, deathTime;
     public Rigidbody2D rb;
-    public float damage = 5f;
+    public float damage;
     void Start()
     {
-        speed = 5f;
         deathTime = Time.time + duration;
         rb.velocity = transform.up * speed;
         rb=GetComponent<Rigidbody2D>();

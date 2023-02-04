@@ -209,7 +209,6 @@ public class Combat : MonoBehaviour
                         currentGun = rifle;
                         gameControllerScript.gun.accuracy.definer = 1;
                         break;
-
                 }
                 currentGun.damage += gameControllerScript.gun.damage.add;
                 currentGun.accuracy += gameControllerScript.gun.accuracy.add;
