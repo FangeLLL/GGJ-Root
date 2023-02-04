@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 6906138244830367578}
   - component: {fileID: 6906138244830367577}
   - component: {fileID: 6906138244830367576}
+  - component: {fileID: 483752568}
   m_Layer: 9
   m_Name: SerpilRootoglu
   m_TagString: Player
@@ -240,6 +241,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &483752568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6906138244830367552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a28e80016283fa44789f8b53be981abe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraMovement: {fileID: 0}
+  canvas: {fileID: 0}
 --- !u!1 &6906138245765317421
 GameObject:
   m_ObjectHideFlags: 0

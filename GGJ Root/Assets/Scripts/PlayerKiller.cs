@@ -12,7 +12,8 @@ public class PlayerKiller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            canvas.SetActive(true);
+            //canvas.SetActive(true);
+            cameraMovement.Parent_ChildSetter(); 
             cameraMovement.StartCoroutine(cameraMovement.MoveCameraOnPlayerDeath());
         }
     }
