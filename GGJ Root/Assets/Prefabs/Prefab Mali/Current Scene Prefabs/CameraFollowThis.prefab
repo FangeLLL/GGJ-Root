@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3558878176536771809
+--- !u!1 &923170690363186030
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 843980992174616325}
-  - component: {fileID: 8576108162562423234}
+  - component: {fileID: 3898430897833412746}
+  - component: {fileID: 5379579360198467149}
+  - component: {fileID: 5517532766690546970}
   m_Layer: 0
   m_Name: CameraFollowThis
   m_TagString: Untagged
@@ -17,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &843980992174616325
+--- !u!4 &3898430897833412746
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3558878176536771809}
+  m_GameObject: {fileID: 923170690363186030}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,18 +33,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8576108162562423234
+--- !u!114 &5379579360198467149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3558878176536771809}
+  m_GameObject: {fileID: 923170690363186030}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9f89019e004dae48b2a70c6fd95cbcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  familyTreeStatInformer: {fileID: 5517532766690546970}
+  canvas2: {fileID: 0}
   Parent: {fileID: 0}
   Child: {fileID: 0}
   PhotoFrame1: {fileID: 0}
@@ -59,7 +62,28 @@ MonoBehaviour:
   SerpilRootoglu5: {fileID: 0}
   SerpilRootoglu6: {fileID: 0}
   moveSpeed: 2
-  canvas2: {fileID: 0}
-  fadeImage: {fileID: 0}
   DeathCounterforChildParrentSet: 0
+  moveCamera: 0
+  setpositiontoparent: 0
+  fadeImage: {fileID: 0}
   vcam: {fileID: 0}
+--- !u!114 &5517532766690546970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923170690363186030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87f6d40c786b39c47bd3d4a143d19532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraMovement: {fileID: 5379579360198467149}
+  enemiesKilledText: {fileID: 0}
+  shotsFiredText: {fileID: 0}
+  enemiesKilled: 0
+  shotsFired: 0
+  lerpTime: 1
+  bool1: 0
+  bool2: 0
