@@ -102,10 +102,12 @@ MonoBehaviour:
   SWORDhitCountText: {fileID: 0}
   GUNFireRateSliderText: {fileID: 0}
   SWORDFireRateSliderText: {fileID: 0}
+  GUNAccuracySliderText: {fileID: 0}
   GUNDamageSliderText: {fileID: 0}
   SWORDDamageSliderText: {fileID: 0}
   GUNFireRateSlider: {fileID: 0}
   SWORDFireRateSlider: {fileID: 0}
+  GUNAccuracySlider: {fileID: 0}
   GUNDamageSlider: {fileID: 0}
   SWORDDamageSlider: {fileID: 0}
   GUNenemiesKilled: 0
@@ -115,3 +117,4 @@ MonoBehaviour:
   SWORDenemiesKilled: 0
   SWORDhitCount: 0
   PlayerCounter: 0
+  bool4: 0
