@@ -85,7 +85,8 @@ public class GameControllerScript : MonoBehaviour
     {
         if (weapon.accuracy.barriers[weapon.accuracy.barriers.Length - 1] != weapon.accuracy.currentBarrier)
         {
-            if ((weapon.hit / weapon.fire) * weapon.accuracy.definer > weapon.accuracy.currentBarrier)
+            //   if ((weapon.hit / weapon.fire) * weapon.accuracy.definer > weapon.accuracy.currentBarrier)
+            if ((weapon.hit_total / weapon.fire_total) > weapon.accuracy.currentBarrier)
             {
                 Debug.Log("Accuracy incrased");
 
@@ -285,9 +286,6 @@ public class GameControllerScript : MonoBehaviour
         streak = 0;
         waveSystem.level = 1;
         waveSystem.totalEnemy = 0;
-        DestroyTagObjects("GunEnemy");
-        DestroyTagObjects("SwordEnemy");
-        DestroyTagObjects("Buff");
     }
 
     private void SpecStartSetting(Spec spec)
@@ -301,6 +299,14 @@ public class GameControllerScript : MonoBehaviour
             Debug.Log(spec.add);
 
         }
+    }
+
+    public void resetScene()
+    {
+        DestroyTagObjects("GunEnemy");
+        DestroyTagObjects("SwordEnemy");
+        DestroyTagObjects("Buff");
+        DestroyTagObjects("Bullet");
     }
 
     private void ResetIstatistics(Weapon weapon)

@@ -298,6 +298,13 @@ public class Combat : MonoBehaviour
 
     public void Attack()
     {
+        Collider2D[] hitBullet = Physics2D.OverlapCircleAll(attackPoint.position, AttackRadius, BulletLayer);
+
+        foreach (Collider2D bullet in hitBullet)
+        {
+            Destroy(bullet.gameObject);
+
+        }
 
         Collider2D[] hitswordenemy = Physics2D.OverlapCircleAll(attackPoint.position, AttackRadius, SwordenemyLayer);
 
@@ -524,4 +531,5 @@ public class Combat : MonoBehaviour
         }
     }
    
+
 }

@@ -79,6 +79,7 @@ public class SwordEnemyAI : MonoBehaviour
             //PLAYER DIE
             //GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDie>().DeathbySwordEnemy();
             Debug.Log("Player Die");
+            player.GetComponent<PlayerKiller>().PlayerDie();
         }
     }
 
