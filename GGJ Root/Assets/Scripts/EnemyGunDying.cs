@@ -1,3 +1,4 @@
+using EZCameraShake;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -162,6 +163,7 @@ public class EnemyGunDying : MonoBehaviour
                     gameControllerScript.checkDamage(gameControllerScript.sword, "sword");
                     break;
                 case "gun":
+                    CameraShaker.Instance.ShakeOnce(10f, 50f, .1f, 1f);
                     gameControllerScript.gun.kill++;
                     gameControllerScript.checkWeaponLevel(gameControllerScript.gun, "gun");
                     gameControllerScript.checkDamage(gameControllerScript.gun, "gun");

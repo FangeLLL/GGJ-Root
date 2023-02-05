@@ -11,6 +11,7 @@ public class WaveSystem : MonoBehaviour
     public int level,hardness,amount_sword,amount_gun,totalEnemy;
     public float rangeX, rangeY;
 
+
     // Start is called before the first frame update
     void Start()
     {
