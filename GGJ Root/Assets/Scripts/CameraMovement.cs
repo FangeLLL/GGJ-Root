@@ -41,6 +41,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera vcam2;
     public GameObject CameraHolder1;
     public GameObject CameraHolder2;
+    public GameObject StatTexts;
 
 
     private void Start()
@@ -271,6 +272,7 @@ public class CameraMovement : MonoBehaviour
             StartCoroutine(FadeIn());
 
             yield return new WaitForSeconds(.25f);
+
 
             familyTreeStatInformer.OnPlayerDeath();
 
