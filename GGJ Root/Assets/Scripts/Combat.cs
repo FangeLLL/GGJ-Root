@@ -122,6 +122,7 @@ public class Combat : MonoBehaviour
         AttackRadius = currentSword.size;
         hpdamage = currentSword.damage;
         attackRate = currentSword.speed;
+        sarpAttackDirectionCounter = 1;
     }
 
     void Update()
@@ -165,21 +166,21 @@ public class Combat : MonoBehaviour
 
 
                 sarpAttackDirectionCounter++;
-                Attack();
+                //Attack();
                 //DEATHBLOW
                 DeathblowBeforeAttack();
                 nextAttackTime = Time.time + 1f / attackRate;
                 if (sarpAttackDirectionCounter % 2 == 0)
                 {
                     //ATTACK ANIMATIONS
-                    //int parametreisAttack = Animator.StringToHash("isAttack");
-                    //animator.SetTrigger(parametreisAttack);
+                    int parametreisAttack = Animator.StringToHash("isAttack");
+                    animator.SetTrigger(parametreisAttack);
                 }
                 if (sarpAttackDirectionCounter % 2 == 1)
                 {
                     //ATTACK ANIMATIONS
-                    //int parametreisAttack2 = Animator.StringToHash("isAttack2");
-                    //animator.SetTrigger(parametreisAttack2);
+                    int parametreisAttack2 = Animator.StringToHash("isAttack2");
+                    animator.SetTrigger(parametreisAttack2);
                 }
             }
         }

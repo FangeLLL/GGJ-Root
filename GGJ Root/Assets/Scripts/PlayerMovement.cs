@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
 
     bool walk;
 
+
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -98,15 +100,13 @@ public class PlayerMovement : MonoBehaviour
 
         //LEG ANIMATIONS
 
-        /*if (movement.x != 0 || movement.y != 0)
+        if (movement.x != 0 || movement.y != 0)
         {
-            GameObject.FindGameObjectWithTag("Bacak").GetComponent<Bacak_Animation>().Anan(true);
             animator.SetBool("IsWalking", true);
         }
         else
         {
             animator.SetBool("IsWalking", false);
-            GameObject.FindGameObjectWithTag("Bacak").GetComponent<Bacak_Animation>().Anan(false);
-        }*/
+        }
     }
 }
