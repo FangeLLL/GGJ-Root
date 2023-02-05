@@ -265,6 +265,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 915c0f47971f95444b2f7cd1c27bef97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &238139343 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 238139343, guid: 5e38c4dbd541a7247a2aa8e6836e2e74, type: 3}
+  m_PrefabInstance: {fileID: 574574590655345792}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &261630383
 GameObject:
   m_ObjectHideFlags: 0
@@ -1534,6 +1545,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1370844039 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1370844039, guid: 5e38c4dbd541a7247a2aa8e6836e2e74, type: 3}
+  m_PrefabInstance: {fileID: 574574590655345792}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1403068823 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1403068823, guid: 5e38c4dbd541a7247a2aa8e6836e2e74, type: 3}
@@ -2174,9 +2196,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 574574590655345796}
     - target: {fileID: 5517532766690546970, guid: cfe2f769ceb511146ba7f8ec5bfb7b40, type: 3}
+      propertyPath: GUNAccuracySlider
+      value: 
+      objectReference: {fileID: 238139343}
+    - target: {fileID: 5517532766690546970, guid: cfe2f769ceb511146ba7f8ec5bfb7b40, type: 3}
       propertyPath: GUNFireRateSlider
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 574574590655345798}
     - target: {fileID: 5517532766690546970, guid: cfe2f769ceb511146ba7f8ec5bfb7b40, type: 3}
       propertyPath: GUNshotsFiredText
       value: 
@@ -2196,7 +2222,7 @@ PrefabInstance:
     - target: {fileID: 5517532766690546970, guid: cfe2f769ceb511146ba7f8ec5bfb7b40, type: 3}
       propertyPath: GUNDamageSliderText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 574574590655345797}
     - target: {fileID: 5517532766690546970, guid: cfe2f769ceb511146ba7f8ec5bfb7b40, type: 3}
       propertyPath: SWORDFireRateSlider
       value: 
@@ -2213,6 +2239,10 @@ PrefabInstance:
       propertyPath: gameControllerScript
       value: 
       objectReference: {fileID: 513486969}
+    - target: {fileID: 5517532766690546970, guid: cfe2f769ceb511146ba7f8ec5bfb7b40, type: 3}
+      propertyPath: GUNAccuracySliderText
+      value: 
+      objectReference: {fileID: 1370844039}
     - target: {fileID: 5517532766690546970, guid: cfe2f769ceb511146ba7f8ec5bfb7b40, type: 3}
       propertyPath: GUNFireRateSliderText
       value: 
@@ -2253,6 +2283,10 @@ PrefabInstance:
     - target: {fileID: 863619762, guid: 5e38c4dbd541a7247a2aa8e6836e2e74, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1661769361, guid: 5e38c4dbd541a7247a2aa8e6836e2e74, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 1728480699, guid: 5e38c4dbd541a7247a2aa8e6836e2e74, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2378,6 +2412,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &574574590655345797 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 152281475, guid: 5e38c4dbd541a7247a2aa8e6836e2e74, type: 3}
+  m_PrefabInstance: {fileID: 574574590655345792}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &574574590655345798 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 783964012562054270, guid: 5e38c4dbd541a7247a2aa8e6836e2e74, type: 3}
+  m_PrefabInstance: {fileID: 574574590655345792}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1340366828941106233

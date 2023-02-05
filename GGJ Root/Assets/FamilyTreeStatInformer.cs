@@ -25,12 +25,13 @@ public class FamilyTreeStatInformer : MonoBehaviour
 
     public TextMeshProUGUI GUNFireRateSliderText;
     public TextMeshProUGUI SWORDFireRateSliderText;
-    //public TextMeshProUGUI AccuracySliderText;
+    public TextMeshProUGUI GUNAccuracySliderText;
     public TextMeshProUGUI GUNDamageSliderText;
     public TextMeshProUGUI SWORDDamageSliderText;
+
     public Slider GUNFireRateSlider;
     public Slider SWORDFireRateSlider;
-    //public Slider AccuracySlider;
+    public Slider GUNAccuracySlider;
     public Slider GUNDamageSlider;
     public Slider SWORDDamageSlider;
 
@@ -46,11 +47,13 @@ public class FamilyTreeStatInformer : MonoBehaviour
     private float currentLerpTime2;
     private float currentLerpTime3;
     private float currentLerpTime4;
+    private float currentLerpTime5;
 
     private float lerpTime = 1f;
     private float lerpTime2 = 1f;
     private float lerpTime3 = 1f;
     private float lerpTime4 = 1f;
+    private float lerpTime5 = 1f;
 
     private float startTime;
     private bool swordbool1 = false;
@@ -60,14 +63,16 @@ public class FamilyTreeStatInformer : MonoBehaviour
     private bool bool1 = false;
     private bool bool2 = false;
     private bool bool3 = false;
-    private bool bool4 = false;
+    public bool bool4 = false;
     private bool bool5 = false;
     private bool bool6 = false;
+    private bool bool7 = false;
     private bool keyCodeChecker = false;
     private bool onetimebool1 = true;
     private bool onetimebool2 = true;
     private bool onetimebool3 = true;
     private bool onetimebool4 = true;
+    private bool onetimebool5 = true;
 
 
 
@@ -91,17 +96,45 @@ public class FamilyTreeStatInformer : MonoBehaviour
             SWORDhitCountText.text = "Hit Count: " + currentSWORDhitCount;
             if (currentSWORDhitCount == SWORDhitCount)
             {
-                swordbool4 = true;
+                swordbool3 = true;
                 swordbool2 = false;
                 startTime = Time.time;
-
-                SWORDDamageSlider.minValue = 0;
-                SWORDDamageSlider.maxValue = gameControllerScript.sword.damage.barriers[System.Array.IndexOf(gameControllerScript.sword.damage.barriers, gameControllerScript.sword.damage.start) + 1];
+                SWORDFireRateSlider.minValue = 0;
+                SWORDFireRateSlider.maxValue = gameControllerScript.sword.fireRate.barriers[System.Array.IndexOf(gameControllerScript.sword.fireRate.barriers, gameControllerScript.sword.fireRate.start) + 1];
             }
         }
 
         if (swordbool3)
         {
+            if (currentLerpTime3 < lerpTime3)
+            {
+                currentLerpTime3 += Time.deltaTime;
+                float t = currentLerpTime3 / lerpTime3;
+                SWORDFireRateSlider.value = Mathf.Lerp(SWORDFireRateSlider.minValue, gameControllerScript.sword.fire_total, t);
+            }
+            else if (onetimebool3)
+            {
+                if (gameControllerScript.sword.fire_total >= gameControllerScript.sword.fireRate.barriers[System.Array.IndexOf(gameControllerScript.sword.fireRate.barriers, gameControllerScript.sword.fireRate.start) + 1])
+                {
+                    float temp4 = System.Array.IndexOf(gameControllerScript.sword.fireRate.barriers, gameControllerScript.sword.fireRate.start) * gameControllerScript.sword.fireRate.amount;
+                    SWORDFireRateSliderText.text = "Successor Fire Rate Increased \r\n " + temp4 + " >> " + (temp4 + gameControllerScript.sword.fireRate.amount);
+                    swordbool3 = false;
+                    swordbool4 = true;
+                    startTime = Time.time;
+                    onetimebool3 = false;
+                    SWORDDamageSlider.minValue = 0;
+                    SWORDDamageSlider.maxValue = gameControllerScript.sword.damage.barriers[System.Array.IndexOf(gameControllerScript.sword.damage.barriers, gameControllerScript.sword.damage.start) + 1];
+                }
+                else
+                {
+                    swordbool3 = false;
+                    swordbool4 = true;
+                    startTime = Time.time;
+                    onetimebool3 = false;
+                    SWORDDamageSlider.minValue = 0;
+                    SWORDDamageSlider.maxValue = gameControllerScript.sword.damage.barriers[System.Array.IndexOf(gameControllerScript.sword.damage.barriers, gameControllerScript.sword.damage.start) + 1];
+                }
+            }
         }
             
         if (swordbool4)
@@ -175,8 +208,8 @@ public class FamilyTreeStatInformer : MonoBehaviour
             GUNshotsFiredText.text = "Shots Fired: " + currentGUNShotsFired;
             if (currentGUNShotsFired == GUNshotsFired)
             {
-                bool4 = false;
                 bool5 = true;
+                bool4 = false;
                 startTime = Time.time;
 
                 GUNFireRateSlider.minValue = 0;
@@ -232,21 +265,60 @@ public class FamilyTreeStatInformer : MonoBehaviour
                     float temp2 = System.Array.IndexOf(gameControllerScript.gun.damage.barriers, gameControllerScript.gun.damage.start) * gameControllerScript.gun.damage.amount;
                     GUNDamageSliderText.text = "Successor Damage Increased \r\n " + temp2 + " >> " + (temp2 + gameControllerScript.gun.damage.amount);
                     bool6 = false;
+                    bool7 = true;
                     startTime = Time.time;
                     onetimebool2 = false;
+
+                    //GUNAccuracySlider.minValue = 0;
+                    //GUNAccuracySlider.maxValue = gameControllerScript.gun.accuracy.barriers[System.Array.IndexOf(gameControllerScript.gun.accuracy.barriers, gameControllerScript.gun.accuracy.start) + 1];
                     keyCodeChecker = true;
                     ContinueWithSuccessorText.text = "Press N Continue With Successor";
                 }
                 else
                 {
                     bool6 = false;
+                    bool7 = true;
                     startTime = Time.time;
                     onetimebool2 = false;
+
+                    //GUNAccuracySlider.minValue = 0;
+                    //GUNAccuracySlider.maxValue = (gameControllerScript.gun.accuracy.barriers[System.Array.IndexOf(gameControllerScript.gun.accuracy.barriers, gameControllerScript.gun.accuracy.start) + 1] * 100);
                     keyCodeChecker = true;
                     ContinueWithSuccessorText.text = "Press N Continue With Successor";
                 }
             }
         }
+
+       /* if (bool7)
+        {
+            if (currentLerpTime5 < lerpTime5)
+            {
+                currentLerpTime5 += Time.deltaTime;
+                float t = currentLerpTime5 / lerpTime5;
+                GUNAccuracySlider.value = Mathf.Lerp(GUNAccuracySlider.minValue, ((gameControllerScript.gun.hit_total / gameControllerScript.gun.fire_total)*100), t);
+            }
+            else if (onetimebool5)
+            {
+                if ((gameControllerScript.gun.hit_total / gameControllerScript.gun.fire_total) >= gameControllerScript.gun.accuracy.barriers[System.Array.IndexOf(gameControllerScript.gun.accuracy.barriers, gameControllerScript.gun.accuracy.start) + 1])
+                {
+                    float temp2 = System.Array.IndexOf(gameControllerScript.gun.accuracy.barriers, gameControllerScript.gun.accuracy.start) * gameControllerScript.gun.accuracy.amount;
+                    GUNDamageSliderText.text = "Successor Accuracy Increased \r\n " + temp2 + " >> " + (temp2 + gameControllerScript.gun.accuracy.amount);
+                    bool7 = false;
+                    startTime = Time.time;
+                    onetimebool5 = false;
+                    keyCodeChecker = true;
+                    ContinueWithSuccessorText.text = "Press N Continue With Successor";
+                }
+                else
+                {
+                    bool7 = false;
+                    startTime = Time.time;
+                    onetimebool5 = false;
+                    keyCodeChecker = true;
+                    ContinueWithSuccessorText.text = "Press N Continue With Successor";
+                }
+            }
+        }*/
 
 
 
@@ -261,9 +333,6 @@ public class FamilyTreeStatInformer : MonoBehaviour
                 gameControllerScript.Inheritance();
             }
         }
-        
-
-
 
     }
 
@@ -273,7 +342,9 @@ public class FamilyTreeStatInformer : MonoBehaviour
         swordbool1 = true;
         onetimebool1 = true;
         onetimebool2 = true;
+        onetimebool3 = true;
         onetimebool4 = true;
+        onetimebool5 = true;
         PlayerCounter++;
         PlayerCounterText.text = PlayerCounter + "/6";
         GUNenemiesKilled = gameControllerScript.gun.kill;
@@ -284,7 +355,7 @@ public class FamilyTreeStatInformer : MonoBehaviour
         }
         else
         {
-            GUNtotalAccucary = Mathf.RoundToInt((gameControllerScript.gun.hit_total / gameControllerScript.gun.fire_total) * 100);
+            GUNtotalAccucary = ((gameControllerScript.gun.hit_total / gameControllerScript.gun.fire_total)*100);
         }
         GUNshotsFired = gameControllerScript.gun.fire_total;
         SWORDenemiesKilled = gameControllerScript.sword.kill;
@@ -303,17 +374,21 @@ public class FamilyTreeStatInformer : MonoBehaviour
 
         currentLerpTime = 0;
         currentLerpTime2 = 0;
+        currentLerpTime3 = 0;
         currentLerpTime4 = 0;
-
-
 
         GUNFireRateSliderText.text = "";
         GUNFireRateSlider.value = 0;
+        SWORDFireRateSliderText.text = "";
+        SWORDFireRateSlider.value = 0;
 
         GUNDamageSliderText.text = "";
         GUNDamageSlider.value = 0;
         SWORDDamageSliderText.text = "";
         SWORDDamageSlider.value = 0;
+
+        GUNAccuracySliderText.text = "";
+        GUNAccuracySlider.value = 0;
     }
 
 
