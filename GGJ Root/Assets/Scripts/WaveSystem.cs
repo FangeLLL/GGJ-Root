@@ -13,6 +13,9 @@ public class WaveSystem : MonoBehaviour
     public float rangeX, rangeY;
     public GameObject waveText;
 
+    public float duration = 1f;
+    private float currentTime;
+
 
 
     // Start is called before the first frame update
@@ -75,12 +78,30 @@ public class WaveSystem : MonoBehaviour
     private IEnumerator ShowWave()
     {
         waveText.SetActive(true);
+
         waveText.GetComponent<TextMeshProUGUI>().text = "Wave " + level.ToString();
-        yield return new WaitForSeconds(.5f);
-        waveText.GetComponent<TextMeshProUGUI>().fontSize = 50;
-        yield return new WaitForSeconds(1);
-       waveText.GetComponent<TextMeshProUGUI>().fontSize = 36;
-        yield return new WaitForSeconds(1);
-       waveText.SetActive(false);
+        float startTime = Time.time;
+        while (Time.time - startTime <= 4f)
+        {
+            currentTime = 0f;
+            while (currentTime <= duration)
+            {
+                float size = Mathf.Lerp(26, 50, currentTime / duration);
+                waveText.GetComponent<TextMeshProUGUI>().fontSize = size;
+                currentTime += Time.deltaTime;
+                yield return null;
+            }
+
+            currentTime = 0f;
+            while (currentTime <= duration)
+            {
+                float size = Mathf.Lerp(50, 26, currentTime / duration);
+                waveText.GetComponent<TextMeshProUGUI>().fontSize = size;
+                currentTime += Time.deltaTime;
+                yield return null;
+            }
+        }
+        waveText.GetComponent<TextMeshProUGUI>().text = "";
+        waveText.SetActive(false);
     }
 }
