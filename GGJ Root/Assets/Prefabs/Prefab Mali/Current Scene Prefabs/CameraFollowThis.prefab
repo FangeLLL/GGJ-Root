@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f89019e004dae48b2a70c6fd95cbcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveSystem: {fileID: 0}
   familyTreeStatInformer: {fileID: 5517532766690546970}
   canvas2: {fileID: 0}
   Parent: {fileID: 0}
@@ -76,6 +77,7 @@ MonoBehaviour:
   vcam2: {fileID: 0}
   CameraHolder1: {fileID: 0}
   CameraHolder2: {fileID: 0}
+  StatTexts: {fileID: 0}
 --- !u!114 &5517532766690546970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,11 +90,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f6d40c786b39c47bd3d4a143d19532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameControllerScript: {fileID: 0}
   cameraMovement: {fileID: 5379579360198467149}
-  enemiesKilledText: {fileID: 0}
-  shotsFiredText: {fileID: 0}
-  enemiesKilled: 0
-  shotsFired: 0
+  ContinueWithSuccessorText: {fileID: 0}
+  PlayerCounterText: {fileID: 0}
+  GUNenemiesKilledText: {fileID: 0}
+  GUNhitCountText: {fileID: 0}
+  GUNtotalAccucaryText: {fileID: 0}
+  GUNshotsFiredText: {fileID: 0}
+  SWORDenemiesKilledText: {fileID: 0}
+  SWORDhitCountText: {fileID: 0}
+  GUNenemiesKilled: 0
+  GUNhitCount: 0
+  GUNtotalAccucary: 0
+  GUNshotsFired: 0
+  SWORDenemiesKilled: 0
+  SWORDhitCount: 0
+  PlayerCounter: 0
   lerpTime: 1
   bool1: 0
   bool2: 0
+  bool3: 0
+  bool4: 0
+  keyCodeChecker: 0

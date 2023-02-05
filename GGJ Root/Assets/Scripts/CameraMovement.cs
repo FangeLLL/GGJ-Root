@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class CameraMovement : MonoBehaviour
 {
+    public WaveSystem waveSystem;
     public FamilyTreeStatInformer familyTreeStatInformer;
     public GameObject canvas2;
     public Transform Parent;
@@ -41,6 +42,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera vcam2;
     public GameObject CameraHolder1;
     public GameObject CameraHolder2;
+    public GameObject StatTexts;
 
 
     private void Start()
@@ -108,6 +110,8 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
             SerpilRootoglu2.transform.position = deathpositiontracker;
             SerpilRootoglu2.GetComponent<PlayerMovement>().enabled = true;
+            SerpilRootoglu2.GetComponent<Combat>().enabled = true;
+            SerpilRootoglu1.SetActive(false);
             CameraHolder1.SetActive(true);
             CameraHolder2.SetActive(false);
             yield return new WaitForSeconds(0.25f);
@@ -115,7 +119,8 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(1f);
             StartCoroutine(FadeIn());
             yield return new WaitForSeconds(.25f);
-            //familyTreeStatInformer.OnPlayerDeath();
+            familyTreeStatInformer.TextReseter();
+            waveSystem.generateWave();
             yield return new WaitForSeconds(.25f);
             moveCamera = false;
         }
@@ -127,6 +132,8 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
             SerpilRootoglu3.transform.position = deathpositiontracker;
             SerpilRootoglu3.GetComponent<PlayerMovement>().enabled = true;
+            SerpilRootoglu3.GetComponent<Combat>().enabled = true;
+            SerpilRootoglu2.SetActive(false);
             CameraHolder1.SetActive(true);
             CameraHolder2.SetActive(false);
             yield return new WaitForSeconds(0.25f);
@@ -134,7 +141,8 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(1f);
             StartCoroutine(FadeIn());
             yield return new WaitForSeconds(.25f);
-            //familyTreeStatInformer.OnPlayerDeath();
+            familyTreeStatInformer.TextReseter();
+            waveSystem.generateWave();
             yield return new WaitForSeconds(.25f);
             moveCamera = false;
         }
@@ -146,6 +154,8 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
             SerpilRootoglu4.transform.position = deathpositiontracker;
             SerpilRootoglu4.GetComponent<PlayerMovement>().enabled = true;
+            SerpilRootoglu4.GetComponent<Combat>().enabled = true;
+            SerpilRootoglu3.SetActive(false);
             CameraHolder1.SetActive(true);
             CameraHolder2.SetActive(false);
             yield return new WaitForSeconds(0.25f);
@@ -153,7 +163,8 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(1f);
             StartCoroutine(FadeIn());
             yield return new WaitForSeconds(.25f);
-            //familyTreeStatInformer.OnPlayerDeath();
+            familyTreeStatInformer.TextReseter();
+            waveSystem.generateWave();
             yield return new WaitForSeconds(.25f);
             moveCamera = false;
         }
@@ -165,6 +176,8 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
             SerpilRootoglu5.transform.position = deathpositiontracker;
             SerpilRootoglu5.GetComponent<PlayerMovement>().enabled = true;
+            SerpilRootoglu5.GetComponent<Combat>().enabled = true;
+            SerpilRootoglu4.SetActive(false);
             CameraHolder1.SetActive(true);
             CameraHolder2.SetActive(false);
             yield return new WaitForSeconds(0.25f);
@@ -172,7 +185,8 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(1f);
             StartCoroutine(FadeIn());
             yield return new WaitForSeconds(.25f);
-            //familyTreeStatInformer.OnPlayerDeath();
+            familyTreeStatInformer.TextReseter();
+            waveSystem.generateWave();
             yield return new WaitForSeconds(.25f);
             moveCamera = false;
         }
@@ -184,6 +198,8 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
             SerpilRootoglu6.transform.position = deathpositiontracker;
             SerpilRootoglu6.GetComponent<PlayerMovement>().enabled = true;
+            SerpilRootoglu6.GetComponent<Combat>().enabled = true;
+            SerpilRootoglu5.SetActive(false);
             CameraHolder1.SetActive(true);
             CameraHolder2.SetActive(false);
             yield return new WaitForSeconds(0.25f);
@@ -191,7 +207,8 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(1f);
             StartCoroutine(FadeIn());
             yield return new WaitForSeconds(.25f);
-            //familyTreeStatInformer.OnPlayerDeath();
+            familyTreeStatInformer.TextReseter();
+            waveSystem.generateWave();
             yield return new WaitForSeconds(.25f);
             moveCamera = false;
         }
@@ -210,6 +227,7 @@ public class CameraMovement : MonoBehaviour
 
             SerpilRootoglu1.GetComponent<PlayerMovement>().enabled = false;
             SerpilRootoglu1.GetComponent<PlayerKiller>().enabled = false;
+            SerpilRootoglu1.GetComponent<Combat>().enabled = false;
 
             StartCoroutine(FadeOut());
 
@@ -224,6 +242,7 @@ public class CameraMovement : MonoBehaviour
             PhotoFrame2.SetActive(true);
             SerpilRootoglu2.SetActive(true);
             SerpilRootoglu2.GetComponent<PlayerMovement>().enabled = false;
+            SerpilRootoglu2.GetComponent<Combat>().enabled = false;
             CameraHolder1.SetActive(false);
             CameraHolder2.SetActive(true);
 
@@ -244,6 +263,7 @@ public class CameraMovement : MonoBehaviour
         {
             SerpilRootoglu2.GetComponent<PlayerMovement>().enabled = false;
             SerpilRootoglu2.GetComponent<PlayerKiller>().enabled = false;
+            SerpilRootoglu2.GetComponent<Combat>().enabled = false;
 
             StartCoroutine(FadeOut());
 
@@ -258,9 +278,11 @@ public class CameraMovement : MonoBehaviour
             PhotoFrame3.SetActive(true);
             SerpilRootoglu3.SetActive(true);
             SerpilRootoglu3.GetComponent<PlayerMovement>().enabled = false;
+            SerpilRootoglu3.GetComponent<Combat>().enabled = false;
             CameraHolder1.SetActive(false);
             CameraHolder2.SetActive(true);
 
+            StatTexts.transform.SetParent(PhotoFrame2.transform);
 
             yield return new WaitForSeconds(0.25f);
 
@@ -268,24 +290,20 @@ public class CameraMovement : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
+            StatTexts.transform.position = CenterizeCam2.transform.position; 
             StartCoroutine(FadeIn());
 
             yield return new WaitForSeconds(.25f);
 
+
             familyTreeStatInformer.OnPlayerDeath();
-
-            yield return new WaitForSeconds(3.75f);
-
-            moveCamera = true;
-            setpositiontoparent = false;
-
-            yield return null;
         }
 
         else if (DeathCounterforChildParrentSet == 3)
         {
             SerpilRootoglu3.GetComponent<PlayerMovement>().enabled = false;
             SerpilRootoglu3.GetComponent<PlayerKiller>().enabled = false;
+            SerpilRootoglu3.GetComponent<Combat>().enabled = false;
 
             StartCoroutine(FadeOut());
 
@@ -300,6 +318,7 @@ public class CameraMovement : MonoBehaviour
             PhotoFrame4.SetActive(true);
             SerpilRootoglu4.SetActive(true);
             SerpilRootoglu4.GetComponent<PlayerMovement>().enabled = false;
+            SerpilRootoglu4.GetComponent<Combat>().enabled = false;
             CameraHolder1.SetActive(false);
             CameraHolder2.SetActive(true);
 
@@ -310,24 +329,19 @@ public class CameraMovement : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
+            StatTexts.transform.position = CenterizeCam3.transform.position;
             StartCoroutine(FadeIn());
 
             yield return new WaitForSeconds(.25f);
 
             familyTreeStatInformer.OnPlayerDeath();
-
-            yield return new WaitForSeconds(3.75f);
-
-            moveCamera = true;
-            setpositiontoparent = false;
-
-            yield return null;
         }
 
         else if (DeathCounterforChildParrentSet == 4)
         {
             SerpilRootoglu4.GetComponent<PlayerMovement>().enabled = false;
             SerpilRootoglu4.GetComponent<PlayerKiller>().enabled = false;
+            SerpilRootoglu4.GetComponent<Combat>().enabled = false;
 
             StartCoroutine(FadeOut());
 
@@ -342,6 +356,7 @@ public class CameraMovement : MonoBehaviour
             PhotoFrame5.SetActive(true);
             SerpilRootoglu5.SetActive(true);
             SerpilRootoglu5.GetComponent<PlayerMovement>().enabled = false;
+            SerpilRootoglu5.GetComponent<Combat>().enabled = false;
             CameraHolder1.SetActive(false);
             CameraHolder2.SetActive(true);
 
@@ -352,24 +367,19 @@ public class CameraMovement : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
+            StatTexts.transform.position = CenterizeCam4.transform.position;
             StartCoroutine(FadeIn());
 
             yield return new WaitForSeconds(.25f);
 
             familyTreeStatInformer.OnPlayerDeath();
-
-            yield return new WaitForSeconds(3.75f);
-
-            moveCamera = true;
-            setpositiontoparent = false;
-
-            yield return null;
         }
 
         else if (DeathCounterforChildParrentSet == 5)
         {
             SerpilRootoglu5.GetComponent<PlayerMovement>().enabled = false;
             SerpilRootoglu5.GetComponent<PlayerKiller>().enabled = false;
+            SerpilRootoglu5.GetComponent<Combat>().enabled = false;
 
             StartCoroutine(FadeOut());
 
@@ -384,6 +394,7 @@ public class CameraMovement : MonoBehaviour
             PhotoFrame6.SetActive(true);
             SerpilRootoglu6.SetActive(true);
             SerpilRootoglu6.GetComponent<PlayerMovement>().enabled = false;
+            SerpilRootoglu6.GetComponent<Combat>().enabled = false;
             CameraHolder1.SetActive(false);
             CameraHolder2.SetActive(true);
 
@@ -394,18 +405,12 @@ public class CameraMovement : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
+            StatTexts.transform.position = CenterizeCam5.transform.position;
             StartCoroutine(FadeIn());
 
             yield return new WaitForSeconds(.25f);
 
             familyTreeStatInformer.OnPlayerDeath();
-
-            yield return new WaitForSeconds(3.75f);
-
-            moveCamera = true;
-            setpositiontoparent = false;
-
-            yield return null;
         }
 
         else

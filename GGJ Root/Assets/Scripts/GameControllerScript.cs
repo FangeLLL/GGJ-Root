@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,53 +11,78 @@ public class GameControllerScript : MonoBehaviour
 {
 
     public Combat combat;
-    public int score,streak;
+    public int score, streak;
     public float streakTime;
-    public TextMeshProUGUI scoreText,streakText;
+    public TextMeshProUGUI scoreText, streakText;
+    public WaveSystem waveSystem;
+    private GameObject[] enemies;
 
     public class Spec
     {
-        public float definer, barrier,add,start,amount;
-        
+        public float definer, currentBarrier, add=0, start, amount;
+        public float[] barriers;
+        public Spec(float[] barr)
+        {
+            barriers = barr;
+            currentBarrier = barr[0];
+            start = currentBarrier;
+        }
+
     }
 
     public class Weapon
     {
-        public float hit, fire, fire_total,kill;
-        public Spec fireRate = new Spec();
-        public Spec damage = new Spec();
-        public Spec accuracy = new Spec();
-        public Spec upgrade = new Spec();
+        public float hit, fire, fire_total = 0, kill = 0, hit_total = 0;
+        public Spec fireRate;
+        public Spec damage;
+        public Spec accuracy;
+        public Spec upgrade;
+        public Weapon(float[] fireRateB, float[] damageB, float[] accuracyB, float[] upgradeB)
+        {
+            fireRate = new Spec(fireRateB);
+            damage = new Spec(damageB);
+            accuracy = new Spec(accuracyB);
+            upgrade = new Spec(upgradeB);
+        }
     }
 
-    public Weapon sword = new Weapon();
-    public Weapon magic = new Weapon();
-    public Weapon gun = new Weapon();
+    public Weapon sword = new Weapon(new float[] { 10, 20, 25, 30 }, new float[] { 10, 20, 25, 30 }, new float[] { 10, 20, 25, 30 }, new float[] { 10, 20, 25, 30 });
+    public Weapon magic = new Weapon(new float[] { 10, 20, 25, 30 }, new float[] { 10, 20, 25, 30 }, new float[] { 10, 20, 25, 30 }, new float[] { 10, 20, 25, 30 });
+    public Weapon gun = new Weapon(new float[] { 10, 20, 25, 30 }, new float[] { 10, 20, 25, 30 }, new float[] { 10, 20, 25, 30 }, new float[] { 10, 20, 25, 30 });
 
 
     void Start()
     {
-        gun.upgrade.barrier = 2;
-        gun.fireRate.barrier = 5;
         gun.fireRate.amount = 0.5f;
-        gun.accuracy.barrier = 0.15f;
         gun.accuracy.amount = 0.5f;
-        gun.damage.barrier = 2;
         gun.damage.amount = 0.5f;
+        gun.upgrade.amount = 0.5f;
 
-        magic.upgrade.barrier = 10;
-        magic.fireRate.barrier = 100;
         magic.fireRate.amount = 0.5f;
-        magic.accuracy.barrier = 0.15f;
         magic.accuracy.amount = 0.5f;
-        magic.damage.barrier = 10;
         magic.damage.amount = 0.5f;
+        magic.upgrade.amount = 0.5f;
 
-        sword.upgrade.barrier = 2;
-        sword.fireRate.barrier = 5;
         sword.fireRate.amount = 0.5f;
-        sword.damage.barrier = 3;
         sword.damage.amount = 0.5f;
+        sword.upgrade.amount = 0.5f;
+
+        /*
+        gun.fireRate.add = gun.fireRate.amount;
+        gun.accuracy.add = gun.accuracy.amount;
+        gun.damage.add = gun.damage.amount;
+        gun.upgrade.add = gun.upgrade.amount;
+
+        magic.fireRate.add = magic.fireRate.amount;
+        magic.accuracy.add = magic.accuracy.amount;
+        magic.damage.add = magic.damage.amount;
+        magic.upgrade.add = magic.upgrade.amount;
+
+        sword.fireRate.add = sword.fireRate.amount;
+        sword.damage.add = sword.damage.amount;
+        sword.upgrade.add = sword.upgrade.amount;
+        */
+
 
         streak = 1;
 
@@ -64,305 +90,174 @@ public class GameControllerScript : MonoBehaviour
 
     private void Update()
     {
-        if(streak !=1 && Time.time >= streakTime)
+        if (streak != 1 && Time.time >= streakTime)
         {
             streak = 1;
             streakText.text = streak.ToString();
         }
     }
 
-    public void checkAccuracy(Weapon weapon,string type)
+    public void checkAccuracy(Weapon weapon, string type)
     {
-    
-        if ((weapon.hit / weapon.fire) * weapon.accuracy.definer > weapon.accuracy.barrier)
+        if (weapon.accuracy.barriers[weapon.accuracy.barriers.Length - 1] != weapon.accuracy.currentBarrier)
         {
-            Debug.Log("Accuracy incrased");
-
-            weapon.accuracy.add += weapon.accuracy.amount;
-
-            switch (type)
+            if ((weapon.hit / weapon.fire) * weapon.accuracy.definer > weapon.accuracy.currentBarrier)
             {
-                case "gun":
+                Debug.Log("Accuracy incrased");
 
-                    switch (weapon.accuracy.add / weapon.accuracy.amount)
-                    {
-                        case 1:
-                            weapon.accuracy.barrier = 0.35f;
-                            break;
-                        case 2:
-                            weapon.accuracy.barrier = 0.55f;
-                            break;
-                        case 3:
-                            weapon.accuracy.barrier = 0.75f;
-                            break;
-                        case 4:
-                            weapon.accuracy.barrier = 0.95f;
-                            break;
-                    }
+                weapon.accuracy.add += weapon.accuracy.amount;
 
-                    combat.currentGun.accuracy += weapon.accuracy.amount;
-                    Debug.Log(combat.currentGun.accuracy);
+                weapon.accuracy.currentBarrier = weapon.accuracy.barriers[(int)(weapon.accuracy.add / weapon.accuracy.amount)];
 
-                    break;
+                switch (type)
+                {
+                    case "gun":
 
-                case "magic":
+                        combat.currentGun.accuracy += weapon.accuracy.amount;
+                        Debug.Log(combat.currentGun.accuracy);
 
-                    switch (weapon.accuracy.add / weapon.accuracy.amount)
-                    {
-                        case 1:
-                            weapon.accuracy.barrier = 0.35f;
-                            break;
-                        case 2:
-                            weapon.accuracy.barrier = 0.55f;
-                            break;
-                        case 3:
-                            weapon.accuracy.barrier = 0.75f;
-                            break;
-                        case 4:
-                            weapon.accuracy.barrier = 0.95f;
-                            break;
-                    }
+                        break;
 
-                    // Change of gun accuracy 
+                    case "magic":
 
-                    //   combat.magic_accuracy +=weapon.accuracy.amount;
 
-                    break;
+                        // Change of gun accuracy 
+
+                        //   combat.magic_accuracy +=weapon.accuracy.amount;
+
+                        break;
+                }
+
+                //   combat.gainLevel();
+
+
             }
-
-            //   combat.gainLevel();
-
-
         }
+      
+       
     }
 
-    public void checkFireRate(Weapon weapon,string type)
+    public void checkFireRate(Weapon weapon, string type)
     {
-        if(weapon.fire_total >= weapon.fireRate.barrier)
+        if (weapon.fireRate.barriers[weapon.fireRate.barriers.Length - 1] != weapon.fireRate.currentBarrier)
         {
-            Debug.Log("Fire Rate incrased");
-            weapon.fireRate.add += weapon.fireRate.amount;
-
-            switch (type)
+            if (weapon.fire_total >= weapon.fireRate.currentBarrier)
             {
-                case "gun":
+                weapon.fireRate.add += weapon.fireRate.amount;
+                weapon.fireRate.currentBarrier = weapon.fireRate.barriers[(int)(weapon.fireRate.add / weapon.fireRate.amount)];
 
-                    switch (weapon.fireRate.add / weapon.fireRate.amount)
-                    {
-                        case 1:
-                            weapon.fireRate.barrier = 15;
-                            break;
-                        case 2:
-                            weapon.fireRate.barrier = 200;
-                            break;
-                        case 3:
-                            weapon.fireRate.barrier = 250;
-                            break;
-                        case 4:
-                            weapon.fireRate.barrier = 300;
-                            break;
-                    }
-                    combat.currentGun.fireRate += weapon.fireRate.amount;
-                    Debug.Log(combat.currentGun.fireRate);
-                  
-                    break;
 
-                case "magic":
+                switch (type)
+                {
+                    case "gun":
 
-                    switch (weapon.fireRate.add / weapon.fireRate.amount)
-                    {
-                        case 1:
-                            weapon.fireRate.barrier = 150;
-                            break;
-                        case 2:
-                            weapon.fireRate.barrier = 200;
-                            break;
-                        case 3:
-                            weapon.fireRate.barrier = 250;
-                            break;
-                        case 4:
-                            weapon.fireRate.barrier = 300;
-                            break;
-                    }
-                    // Change of weapon firerate
+                        combat.currentGun.fireRate += weapon.fireRate.amount;
+                        Debug.Log(combat.currentGun.fireRate);
 
-                    //   combat.gun_fireRate += 0.5f;
-                    break;
+                        break;
 
-                case "sword":
+                    case "magic":
 
-                    switch (weapon.fireRate.add / weapon.fireRate.amount)
-                    {
-                        case 1:
-                            weapon.fireRate.barrier = 150;
-                            break;
-                        case 2:
-                            weapon.fireRate.barrier = 200;
-                            break;
-                        case 3:
-                            weapon.fireRate.barrier = 250;
-                            break;
-                        case 4:
-                            weapon.fireRate.barrier = 300;
-                            break;
-                    }
-                    combat.currentSword.speed += weapon.fireRate.amount;
-                    Debug.Log(combat.currentSword.speed);
-                    break;
+
+                        break;
+
+                    case "sword":
+
+                        combat.currentSword.speed += weapon.fireRate.amount;
+                        Debug.Log(combat.currentSword.speed);
+                        break;
+
+                }
 
             }
-            //   combat.gainLevel();
-
         }
+        else
+        {
+            Debug.Log("MAX");
+        }
+       
     }
 
-    public void checkDamage(Weapon weapon,string type)
+    public void checkDamage(Weapon weapon, string type)
     {
-        if (weapon.kill >= weapon.damage.barrier)
+        if (weapon.damage.barriers[weapon.damage.barriers.Length - 1] != weapon.damage.currentBarrier)
         {
-            weapon.damage.add += weapon.damage.amount;
-
-            Debug.Log("Damage incrased");
-
-            switch (type)
+            if (weapon.kill >= weapon.damage.currentBarrier)
             {
-                case "gun":
+                weapon.damage.add += weapon.damage.amount;
 
-                    switch (weapon.damage.add / weapon.damage.amount)
-                    {
-                        case 1:
-                            weapon.damage.barrier = 4;
-                            break;
-                        case 2:
-                            weapon.damage.barrier = 20;
-                            break;
-                        case 3:
-                            weapon.damage.barrier = 25;
-                            break;
-                        case 4:
-                            weapon.damage.barrier = 30;
-                            break;
-                    }
+                weapon.damage.currentBarrier = weapon.damage.barriers[(int)(weapon.damage.add / weapon.damage.amount)];
 
-                       combat.currentGun.damage += weapon.damage.amount;
-                      Debug.Log(combat.currentGun.damage);
-                    break;
+                Debug.Log("Damage incrased");
 
-                case "magic":
+                switch (type)
+                {
+                    case "gun":
 
-                    switch (weapon.damage.add / weapon.damage.amount)
-                    {
-                        case 1:
-                            weapon.damage.barrier = 15;
-                            break;
-                        case 2:
-                            weapon.damage.barrier = 20;
-                            break;
-                        case 3:
-                            weapon.damage.barrier = 25;
-                            break;
-                        case 4:
-                            weapon.damage.barrier = 30;
-                            break;
-                    }
-                    // Change of weapon firerate
+                        combat.currentGun.damage += weapon.damage.amount;
+                        Debug.Log(combat.currentGun.damage);
+                        break;
 
-                    //   combat.gun_fireRate += 0.5f;
-                    break;
+                    case "magic":
 
-                case "sword":
+                        // Change of weapon firerate
 
-                    switch (weapon.damage.add / weapon.damage.amount)
-                    {
-                        case 1:
-                            weapon.damage.barrier = 15;
-                            break;
-                        case 2:
-                            weapon.damage.barrier = 20;
-                            break;
-                        case 3:
-                            weapon.damage.barrier = 25;
-                            break;
-                        case 4:
-                            weapon.damage.barrier = 30;
-                            break;
-                    }
-                    combat.currentSword.damage += weapon.damage.amount;
-                    Debug.Log(combat.currentSword.damage);
-                    break;
+                        //   combat.gun_fireRate += 0.5f;
+                        break;
+
+                    case "sword":
+
+
+                        combat.currentSword.damage += weapon.damage.amount;
+                        Debug.Log(combat.currentSword.damage);
+                        break;
+
+                }
+                //   combat.gainLevel();
 
             }
-            //   combat.gainLevel();
-
         }
     }
 
     public void checkWeaponLevel(Weapon weapon, string type)
     {
-        if (weapon.kill >= weapon.upgrade.barrier)
+        if (weapon.upgrade.barriers[weapon.upgrade.barriers.Length - 1] != weapon.upgrade.currentBarrier)
         {
-            switch (type)
+            if (weapon.kill >= weapon.upgrade.currentBarrier)
             {
-                case "gun":
+                weapon.upgrade.currentBarrier = weapon.upgrade.barriers[(int)(weapon.upgrade.add / weapon.upgrade.amount)];
+                switch (type)
+                {
+                    case "gun":
 
-                    combat.levelUpWeapon("gun");
+                        combat.levelUpWeapon("gun");
 
-                    switch (combat.gun_level)
-                    {
-                        case 1:
-                            weapon.upgrade.barrier = 5;
-                            break;
-                        case 2:
-                            weapon.upgrade.barrier = 20;
-                            break;
-                     
-                    }
-                    // Change of weapon firerate
+                        // Change of weapon firerate
 
-                    //   combat.gun_fireRate += 0.5f;
-                    break;
+                        //   combat.gun_fireRate += 0.5f;
+                        break;
 
-                case "magic":
+                    case "magic":
 
-                    combat.levelUpWeapon("magic");
+                        combat.levelUpWeapon("magic");
 
-                    switch (combat.magic_level)
-                    {
-                        case 1:
-                            weapon.upgrade.barrier = 15;
-                            break;
-                        case 2:
-                            weapon.upgrade.barrier = 20;
-                            break;
-                       
-                    }
-                    // Change of weapon firerate
+                        // Change of weapon firerate
 
-                    //   combat.gun_fireRate += 0.5f;
-                    break;
+                        //   combat.gun_fireRate += 0.5f;
+                        break;
 
-                case "sword":
+                    case "sword":
 
-                    combat.levelUpWeapon("sword");
+                        combat.levelUpWeapon("sword");
 
-                    switch (combat.sword_level)
-                    {
-                        case 1:
-                            weapon.upgrade.barrier = 4;
-                            break;
-                        case 2:
-                            weapon.upgrade.barrier = 20;
-                            break;
- 
-                    }
-                    // Change of weapon firerate
+                        // Change of weapon firerate
 
-                    //   combat.gun_fireRate += 0.5f;
-                    break;
+                        //   combat.gun_fireRate += 0.5f;
+                        break;
 
+                }
+                //   combat.gainLevel();
             }
-            //   combat.gainLevel();
-
         }
     }
 
@@ -370,18 +265,76 @@ public class GameControllerScript : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         scoreText.color = Color.white;
-        scoreText.fontSize=36;
+        scoreText.fontSize = 36;
     }
 
     public void checkScore()
     {
         scoreText.text = score.ToString();
         scoreText.color = Color.red;
-        scoreText.fontSize=45;
+        scoreText.fontSize = 45;
         streakTime = Time.time + 2f;
         streak++;
-        streakText.text = (streak-1).ToString();
+        streakText.text = (streak - 1).ToString();
         StartCoroutine(textAnimation());
+
+    }
+
+    public void Inheritance()
+    {
+        SpecStartSetting(gun.accuracy);
+        SpecStartSetting(gun.fireRate);
+        SpecStartSetting(gun.damage);
+
+        SpecStartSetting(magic.accuracy);
+        SpecStartSetting(magic.fireRate);
+        SpecStartSetting(magic.damage);
+
+        SpecStartSetting(sword.fireRate);
+        SpecStartSetting(sword.damage);
+
+        ResetIstatistics(gun);
+        ResetIstatistics(magic);
+        ResetIstatistics(sword);
+
+        score = 0;
+        streak = 0;
+        waveSystem.level= 1;
+        waveSystem.totalEnemy = 0;
+        DestroyTagEnemies("GunEnemy");
+        DestroyTagEnemies("SwordEnemy");
+    }
+
+    private void SpecStartSetting(Spec spec)
+    {
+        if (spec.currentBarrier > spec.start)
+        {
+            spec.start = spec.barriers[System.Array.IndexOf(spec.barriers, spec.start) + 1];
+            spec.currentBarrier = spec.start;
+            spec.add = System.Array.IndexOf(spec.barriers, spec.start) * spec.amount;
+            Debug.Log(spec.start);
+            Debug.Log(spec.add);
+
+        }
+    }
+
+    private void ResetIstatistics(Weapon weapon)
+    {
+        weapon.kill = 0;
+        weapon.hit = 0;
+        weapon.fire = 0;
+        weapon.hit_total = 0;
+        weapon.fire_total = 0;
+    }
+
+    private void DestroyTagEnemies(string tag)
+    {
+        enemies = GameObject.FindGameObjectsWithTag(tag);
+
+        foreach (var enemy in enemies)
+        {
+            Destroy(enemy);
+        }
 
     }
 }

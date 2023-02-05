@@ -322,7 +322,7 @@ public class Combat : MonoBehaviour
                 //enemy.GetComponentInChildren<DamageBar>().a = 0;
                 //enemy.GetComponent<Enemy>().TakeDamage(hpdamage, attackposturedamage);
                 CameraShaker.Instance.ShakeOnce(10f, 50f, .1f, 1f);
-                Debug.Log("ATTACK SHAKE");
+            //    Debug.Log("ATTACK SHAKE");
             }
 
             //ENEMY NORMAL HP DAMAGE
@@ -340,7 +340,7 @@ public class Combat : MonoBehaviour
                 //enemy.GetComponentInChildren<DamageBar>().a = 0;
 
                 //enemy.GetComponent<Enemy>().sj = false;
-                Debug.Log("HIT SHAKE");
+            //    Debug.Log("HIT SHAKE");
 
                 /*GameObject HitSplasher = ObjectPool.SharedInstance.GetPooledHitSplasher();
                 if (HitSplasher != null)
@@ -440,7 +440,7 @@ public class Combat : MonoBehaviour
         {
             if (deathblowSound)
             {
-                Debug.Log("DeathBlow Sound");
+             //   Debug.Log("DeathBlow Sound");
                 deathblowSound = false;
             }
 
