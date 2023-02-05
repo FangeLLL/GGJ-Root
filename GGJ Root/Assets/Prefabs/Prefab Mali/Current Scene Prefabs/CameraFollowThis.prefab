@@ -68,6 +68,7 @@ MonoBehaviour:
   CenterizeCam4: {fileID: 0}
   CenterizeCam5: {fileID: 0}
   CenterizeCam6: {fileID: 0}
+  sixthroot: {fileID: 0}
   moveSpeed: 2
   DeathCounterforChildParrentSet: 0
   moveCamera: 0
@@ -92,6 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameControllerScript: {fileID: 0}
   cameraMovement: {fileID: 5379579360198467149}
+  RootExtinctText: {fileID: 0}
   ContinueWithSuccessorText: {fileID: 0}
   PlayerCounterText: {fileID: 0}
   GUNenemiesKilledText: {fileID: 0}

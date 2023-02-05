@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class CameraMovement : MonoBehaviour
     public GameObject CenterizeCam4;
     public GameObject CenterizeCam5;
     public GameObject CenterizeCam6;
+    public TextMeshProUGUI sixthroot;
     Vector3 deathpositiontracker;
     public float moveSpeed = 2f;
     public float DeathCounterforChildParrentSet;
@@ -99,6 +101,12 @@ public class CameraMovement : MonoBehaviour
         }
     }
 
+    public IEnumerator SCENERESET()
+    {
+        StartCoroutine(FadeOut());
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     public IEnumerator CameraSlideDone()
     {
         //Child to player
@@ -212,10 +220,30 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSeconds(.25f);
             moveCamera = false;
         }
+
+        else if (DeathCounterforChildParrentSet == 6)
+        {
+            yield return new WaitForSeconds(1f);
+            StartCoroutine(FadeOut());
+            yield return new WaitForSeconds(0.25f);
+            
+            SerpilRootoglu6.SetActive(false);
+            CameraHolder1.SetActive(true);
+            CameraHolder2.SetActive(false);
+            yield return new WaitForSeconds(0.25f);
+            setpositiontochild = true;
+            yield return new WaitForSeconds(1f);
+            StartCoroutine(FadeIn());
+            yield return new WaitForSeconds(.25f);
+            familyTreeStatInformer.TextReseter();
+            waveSystem.generateWave();
+            yield return new WaitForSeconds(.25f);
+            moveCamera = false;
+        }
     }
 
 
-    public IEnumerator ManFuckThisGame()
+    public IEnumerator HiGGJ()
     {
         DeathCounterforChildParrentSet++;
 
@@ -413,11 +441,42 @@ public class CameraMovement : MonoBehaviour
             familyTreeStatInformer.OnPlayerDeath();
         }
 
-        else
+        else if (DeathCounterforChildParrentSet == 6)
         {
+            SerpilRootoglu6.GetComponent<PlayerMovement>().enabled = false;
+            SerpilRootoglu6.GetComponent<PlayerKiller>().enabled = false;
+            SerpilRootoglu6.GetComponent<Combat>().enabled = false;
+
             StartCoroutine(FadeOut());
-            yield return new WaitForSeconds(0.5f);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+            yield return new WaitForSeconds(0.25f);
+
+            deathpositiontracker = SerpilRootoglu6.transform.position;
+            Parent = CenterizeCam6.transform;
+            transform.position = Parent.position;
+            SerpilRootoglu6.transform.position = new Vector3(PhotoFrame6.transform.position.x, PhotoFrame6.transform.position.y, -5f);
+            //Child = PhotoFrame6.transform;
+            //SerpilRootoglu6.transform.position = new Vector3(PhotoFrame6.transform.position.x, PhotoFrame6.transform.position.y, -5f);
+            //PhotoFrame6.SetActive(true);
+            //SerpilRootoglu6.SetActive(true);
+            //SerpilRootoglu6.GetComponent<PlayerMovement>().enabled = false;
+            //SerpilRootoglu6.GetComponent<Combat>().enabled = false;
+            CameraHolder1.SetActive(false);
+            CameraHolder2.SetActive(true);
+
+
+            yield return new WaitForSeconds(0.25f);
+
+            setpositiontoparent = true;
+
+            yield return new WaitForSeconds(1f);
+
+            StatTexts.transform.position = CenterizeCam6.transform.position;
+            StartCoroutine(FadeIn());
+
+            yield return new WaitForSeconds(.25f);
+
+            familyTreeStatInformer.OnPlayerDeath();
         }
 
     }

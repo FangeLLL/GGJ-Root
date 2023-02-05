@@ -13,6 +13,8 @@ public class FamilyTreeStatInformer : MonoBehaviour
     public GameControllerScript gameControllerScript;
     public CameraMovement cameraMovement;
 
+    public TextMeshProUGUI RootExtinctText;
+
     public TextMeshProUGUI ContinueWithSuccessorText;
     public TextMeshProUGUI PlayerCounterText;
 
@@ -269,9 +271,11 @@ public class FamilyTreeStatInformer : MonoBehaviour
                     startTime = Time.time;
                     onetimebool2 = false;
 
-                    //GUNAccuracySlider.minValue = 0;
-                    //GUNAccuracySlider.maxValue = gameControllerScript.gun.accuracy.barriers[System.Array.IndexOf(gameControllerScript.gun.accuracy.barriers, gameControllerScript.gun.accuracy.start) + 1];
                     keyCodeChecker = true;
+                    if (cameraMovement.DeathCounterforChildParrentSet == 6)
+                    {
+                        RootExtinctText.text = "YOUR FAMILY ROOT HAS EXTINCT";
+                    }
                     ContinueWithSuccessorText.text = "Press N Continue With Successor";
                 }
                 else
@@ -281,56 +285,33 @@ public class FamilyTreeStatInformer : MonoBehaviour
                     startTime = Time.time;
                     onetimebool2 = false;
 
-                    //GUNAccuracySlider.minValue = 0;
-                    //GUNAccuracySlider.maxValue = (gameControllerScript.gun.accuracy.barriers[System.Array.IndexOf(gameControllerScript.gun.accuracy.barriers, gameControllerScript.gun.accuracy.start) + 1] * 100);
                     keyCodeChecker = true;
+                    if (cameraMovement.DeathCounterforChildParrentSet == 6)
+                    {
+                        RootExtinctText.text = "YOUR FAMILY ROOT HAS EXTINCT";
+                    }
                     ContinueWithSuccessorText.text = "Press N Continue With Successor";
                 }
             }
         }
 
-       /* if (bool7)
-        {
-            if (currentLerpTime5 < lerpTime5)
-            {
-                currentLerpTime5 += Time.deltaTime;
-                float t = currentLerpTime5 / lerpTime5;
-                GUNAccuracySlider.value = Mathf.Lerp(GUNAccuracySlider.minValue, ((gameControllerScript.gun.hit_total / gameControllerScript.gun.fire_total)*100), t);
-            }
-            else if (onetimebool5)
-            {
-                if ((gameControllerScript.gun.hit_total / gameControllerScript.gun.fire_total) >= gameControllerScript.gun.accuracy.barriers[System.Array.IndexOf(gameControllerScript.gun.accuracy.barriers, gameControllerScript.gun.accuracy.start) + 1])
-                {
-                    float temp2 = System.Array.IndexOf(gameControllerScript.gun.accuracy.barriers, gameControllerScript.gun.accuracy.start) * gameControllerScript.gun.accuracy.amount;
-                    GUNDamageSliderText.text = "Successor Accuracy Increased \r\n " + temp2 + " >> " + (temp2 + gameControllerScript.gun.accuracy.amount);
-                    bool7 = false;
-                    startTime = Time.time;
-                    onetimebool5 = false;
-                    keyCodeChecker = true;
-                    ContinueWithSuccessorText.text = "Press N Continue With Successor";
-                }
-                else
-                {
-                    bool7 = false;
-                    startTime = Time.time;
-                    onetimebool5 = false;
-                    keyCodeChecker = true;
-                    ContinueWithSuccessorText.text = "Press N Continue With Successor";
-                }
-            }
-        }*/
-
-
-
         if (keyCodeChecker)
         {
             if (Input.GetKeyDown(KeyCode.N))
             {
-                cameraMovement.moveCamera = true;
-                cameraMovement.setpositiontoparent = false;
-                ContinueWithSuccessorText.text = "";
-                keyCodeChecker = false;
-                gameControllerScript.Inheritance();
+                if (cameraMovement.DeathCounterforChildParrentSet == 6)
+                {
+                    cameraMovement.StartCoroutine(cameraMovement.SCENERESET());
+                }
+                else
+                {
+                    cameraMovement.moveCamera = true;
+                    cameraMovement.setpositiontoparent = false;
+                    ContinueWithSuccessorText.text = "";
+                    keyCodeChecker = false;
+                    gameControllerScript.Inheritance();
+                }
+
             }
         }
 
