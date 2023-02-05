@@ -58,7 +58,7 @@ public class Combat : MonoBehaviour
 
     public Sword currentSword;
 
-    public Sword branch = new Sword(2f, 5f, 0.5f);
+    public Sword branch = new Sword(2f, 5f, 2);
     public Sword bat = new Sword(2f, 7f, 0.7f);
     public Sword knife = new Sword(3f, 8f, 0.6f);
 
@@ -199,20 +199,23 @@ public class Combat : MonoBehaviour
                 switch (gun_level)
                 {
                     case 1:
+                        Debug.Log("rifle");
+                        currentGun = rifle;
+                        gameControllerScript.gun.accuracy.definer = 1;
+                        break;
+                    case 2:
                         Debug.Log("Machine Gun");
                         currentGun = machineGun;
                         gameControllerScript.gun.accuracy.definer = 2;
                         break;
+                        /*
                     case 2:
                         Debug.Log("doublePistol");
                         currentGun = doublePistol;
                         gameControllerScript.gun.accuracy.definer = 1.5f;
                         break;
-                    case 3:
-                        Debug.Log("rifle");
-                        currentGun = rifle;
-                        gameControllerScript.gun.accuracy.definer = 1;
-                        break;
+                        */
+                   
                 }
                 currentGun.damage += gameControllerScript.gun.damage.add;
                 currentGun.accuracy += gameControllerScript.gun.accuracy.add;

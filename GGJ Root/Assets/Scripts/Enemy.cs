@@ -200,6 +200,22 @@ public class Enemy : MonoBehaviour
         this.GetComponent<SwordEnemyAI>().enabled = false;
         this.GetComponent<EnemyLookDir>().enabled = false;
         yield return new WaitForSeconds(2f);
+        if (gameControllerScript.PowerUps.Count != 0 && Random.Range(0, 3) == 0)
+        {
+            GameObject powerUpInstance = Instantiate(powerUpPrefab, transform.position, transform.rotation);
+            int loc = 1;
+            switch (gameControllerScript.PowerUps[Random.Range(0, gameControllerScript.PowerUps.Count)])
+            {
+                case "Gun":
+                    loc = 2;
+                    break;
+                case "Magic":
+                    loc = 1;
+                    break;
+            }
+            Debug.Log(gameControllerScript.PowerUps.Count);
+            powerUpInstance.transform.GetChild(loc).gameObject.SetActive(true);
+        }
         Destroy(gameObject);
     }
 
@@ -328,23 +344,4 @@ public class Enemy : MonoBehaviour
         flashRoutine = StartCoroutine(FlashRoutine());
     }
 
-    private void OnDestroy()
-    {
-        if (gameControllerScript.PowerUps.Count != 0 && Random.Range(0, 3) == 0)
-        {
-            GameObject powerUpInstance = Instantiate(powerUpPrefab, transform.position, transform.rotation);
-            int loc = 1;
-            switch (gameControllerScript.PowerUps[Random.Range(0, gameControllerScript.PowerUps.Count)])
-            {
-                case "Gun":
-                    loc = 2;
-                    break;
-                case "Magic":
-                    loc = 1;
-                    break;
-            }
-            Debug.Log(gameControllerScript.PowerUps.Count);
-            powerUpInstance.transform.GetChild(loc).gameObject.SetActive(true);
-        }
-    }
 }
