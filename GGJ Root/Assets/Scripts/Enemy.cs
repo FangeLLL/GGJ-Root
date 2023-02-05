@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
     int parameterEnterTrigger = Animator.StringToHash("Enter");
     int parameterExitTrigger = Animator.StringToHash("Exit");
 
-
+    public SpriteRenderer sp;
 
     GameControllerScript gameControllerScript;
     WaveSystem waveSystem;
@@ -51,6 +51,7 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalMaterial = spriteRenderer.material;
         col = GetComponent<BoxCollider2D>();
+        sp = GetComponent<SpriteRenderer>();
     }
 
     public void TakeDamage(float hpdamage, string weapon)
@@ -115,10 +116,10 @@ public class Enemy : MonoBehaviour
 
         //ENEMY DEATH STUF
 
-        if (CurrentHealt < GameObject.FindGameObjectWithTag("Player").GetComponent<Combat>().hpdamage)
+        /*if (CurrentHealt < GameObject.FindGameObjectWithTag("Player").GetComponent<Combat>().hpdamage)
         {
             GameObject.FindGameObjectWithTag("Player").GetComponent<Combat>().deathblowSound = true;
-        }
+        }*/
 
         //ENEMY STUN DEATH
 
@@ -188,12 +189,17 @@ public class Enemy : MonoBehaviour
         col.enabled = false;
         healthBarObject.SetActive(false);
         damageBarObject.SetActive(false);
+        this.GetComponentInChildren<EnemyDeathSoundRandomizer>().SerpilKillsEnemy();
         StartCoroutine(DieDelay());
     }
 
     IEnumerator DieDelay()
     {
         yield return new WaitForSeconds(.126f);
+        sp.enabled = false;
+        this.GetComponent<SwordEnemyAI>().enabled = false;
+        this.GetComponent<EnemyLookDir>().enabled = false;
+        yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
 

@@ -168,7 +168,8 @@ public class Combat : MonoBehaviour
                 sarpAttackDirectionCounter++;
                 //Attack();
                 //DEATHBLOW
-                DeathblowBeforeAttack();
+                //DeathblowBeforeAttack();
+                //DeathblowBeforeAttack2();
                 nextAttackTime = Time.time + 1f / attackRate;
                 if (sarpAttackDirectionCounter % 2 == 0)
                 {
@@ -317,7 +318,7 @@ public class Combat : MonoBehaviour
 
             if (0 >= enemy.GetComponent<Enemy>().CurrentHealt - hpdamage)
             {
-                enemy.GetComponent<Enemy>().TakeDamage(hpdamage, "sword");
+                enemy.GetComponent<Enemy>().TakeDamage(hpdamage, "sword");                
                 //if(enemy.GetComponentInChildren<DamageBar>().damageDecrease==true)
                 //enemy.GetComponentInChildren<DamageBar>().a = 0;
                 //enemy.GetComponent<Enemy>().TakeDamage(hpdamage, attackposturedamage);
@@ -330,6 +331,7 @@ public class Combat : MonoBehaviour
             else
             {
                 enemy.GetComponent<Enemy>().TakeDamage(hpdamage, "sword");
+                enemy.GetComponentInChildren<EnemyDeathSoundRandomizer>().SerpilHitEnemy();
                 //GameObject.Find("EnemySoundRandomizer 1").GetComponent<EnemyDeathSoundRandomizer>().SarpHitEnemy();
                 CameraShaker.Instance.ShakeOnce(7f, 12.5f, .1f, .5f);
 
@@ -394,6 +396,7 @@ public class Combat : MonoBehaviour
                 enemy.GetComponent<EnemyGunDying>().TakeDamage(hpdamage, "sword");
                 //GameObject.Find("GunEnemySoundRandomizer 1").GetComponent<EnemyGunRandomizerTemp>().SarpHitEnemy2();
                 CameraShaker.Instance.ShakeOnce(7f, 12.5f, .1f, .5f);
+                enemy.GetComponentInChildren<EnemyGunRandomizerTemp>().SerpilHitEnemy2();
 
                 /*if (enemy.GetComponent<EnemyGunDying>().sj == true)
                     enemy.GetComponent<EnemyGunDying>().a = 0;
@@ -432,21 +435,44 @@ public class Combat : MonoBehaviour
 
     }
 
-    void DeathblowBeforeAttack()
+    public void AttackSoundCaller()
     {
-        Collider2D[] hitswordenemy = Physics2D.OverlapCircleAll(attackPoint.position, AttackRadius, EnemiesLayer);
+        GetComponentInChildren<SerpilSwingsSword>().SerpilSwordSwinging();
+    }
+
+    /*void DeathblowBeforeAttack()
+    {
+        Collider2D[] hitswordenemy = Physics2D.OverlapCircleAll(attackPoint.position, AttackRadius, SwordenemyLayer);
 
         foreach (Collider2D enemy in hitswordenemy)
         {
-            if (deathblowSound)
+            if (enemy.GetComponent<Enemy>().CurrentHealt <= hpdamage)
             {
-             //   Debug.Log("DeathBlow Sound");
-                deathblowSound = false;
+                Debug.Log("DeathBlow Sound");
+                GetComponentInChildren<SerpilSwingsSword>().Deathblow();
+                //deathblowSound = false;
             }
 
-            //GetComponentInChildren<SarpSwingsSword>().Deathblow();
+            
         }
     }
+
+    void DeathblowBeforeAttack2()
+    {
+        Collider2D[] hitswordenemy = Physics2D.OverlapCircleAll(attackPoint.position, AttackRadius, GunenemyLayer);
+
+        foreach (Collider2D enemy in hitswordenemy)
+        {
+            if (enemy.GetComponent<EnemyGunDying>().CurrentHealt <= hpdamage)
+            {
+                Debug.Log("DeathBlow Sound");
+                GetComponentInChildren<SerpilSwingsSword>().Deathblow();
+                //deathblowSound = false;
+            }
+
+
+        }
+    }*/
 
     private void OnDrawGizmos()
     {

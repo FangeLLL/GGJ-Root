@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
             if (dashCoolCounter <= 0 && dashCounter <= 0)
             {
                 //DASH SOUND EFFECT
-                //GetComponentInChildren<SarpSwingsSword>().SarpDash();
+                GetComponentInChildren<SerpilSwingsSword>().SerpilDash();
                 temp = moveSpeed;
                 activeMoveSpeed = dashSpeed;
                 moveSpeed = activeMoveSpeed;

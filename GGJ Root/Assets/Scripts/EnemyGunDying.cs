@@ -60,6 +60,8 @@ public class EnemyGunDying : MonoBehaviour
     //int parameterEnterTrigger = Animator.StringToHash("Enter");
     //int parameterExitTrigger = Animator.StringToHash("Exit");
 
+    public SpriteRenderer sp;
+
 
 
     void Start()
@@ -83,6 +85,7 @@ public class EnemyGunDying : MonoBehaviour
         gameControllerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameControllerScript>();
         waveSystem = GameObject.FindGameObjectWithTag("GameController").GetComponent<WaveSystem>();
         col2 = GetComponent<BoxCollider2D>();
+        sp = GetComponent<SpriteRenderer>();
     }
     public void TakeDamage(float hpdamage,string weapon)
     {
@@ -135,10 +138,10 @@ public class EnemyGunDying : MonoBehaviour
         }
         */
 
-        if (CurrentHealt < GameObject.FindGameObjectWithTag("Player").GetComponent<Combat>().hpdamage)
+        /*if (CurrentHealt < GameObject.FindGameObjectWithTag("Player").GetComponent<Combat>().hpdamage)
         {
             GameObject.FindGameObjectWithTag("Player").GetComponent<Combat>().deathblowSound = true;
-        }
+        }*/
 
         switch (weapon)
         {
@@ -197,12 +200,17 @@ public class EnemyGunDying : MonoBehaviour
         col2.enabled = false;
         healthBarObject.SetActive(false);
         damageBarObject.SetActive(false);
+        this.GetComponentInChildren<EnemyGunRandomizerTemp>().SerpilKillsGunEnemy();
         StartCoroutine(DieDelay());
     }
 
     IEnumerator DieDelay()
     {
         yield return new WaitForSeconds(.126f);
+        sp.enabled = false;
+        this.GetComponent<EnemyAI2>().enabled = false;
+        this.GetComponent<EnemyLookDir>().enabled = false;
+        yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
 
