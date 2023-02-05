@@ -12,7 +12,7 @@ public class BackgroundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(backgroundPrefabs[Random.Range(0, backgroundPrefabs.Length)], playerTrans.position, gameObject.transform.rotation);
+     backgrounds[0] = Instantiate(backgroundPrefabs[Random.Range(0, backgroundPrefabs.Length)], playerTrans.position, gameObject.transform.rotation);
     }
 
     // Update is called once per frame

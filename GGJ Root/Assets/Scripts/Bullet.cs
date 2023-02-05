@@ -46,6 +46,7 @@ public class Bullet : MonoBehaviour
             case "Player":
                 //PLAYER DAMAGE
                 Debug.Log("Player Die Gun Enemy");
+                collision.gameObject.GetComponent<PlayerKiller>().PlayerDie();
                 //CinemachineShake.Instance.ShakeCamera(4f, 4f, 2f);
                 break;
         }

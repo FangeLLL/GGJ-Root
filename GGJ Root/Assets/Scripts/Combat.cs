@@ -298,6 +298,13 @@ public class Combat : MonoBehaviour
 
     public void Attack()
     {
+        Collider2D[] hitBullet = Physics2D.OverlapCircleAll(attackPoint.position, AttackRadius, BulletLayer);
+
+        foreach (Collider2D bullet in hitBullet)
+        {
+            Destroy(bullet.gameObject);
+
+        }
 
         Collider2D[] hitswordenemy = Physics2D.OverlapCircleAll(attackPoint.position, AttackRadius, SwordenemyLayer);
 
@@ -400,7 +407,7 @@ public class Combat : MonoBehaviour
                 enemy.GetComponent<EnemyGunDying>().TakeDamage(hpdamage, "sword");
                 //GameObject.Find("GunEnemySoundRandomizer 1").GetComponent<EnemyGunRandomizerTemp>().SarpHitEnemy2();
                 CameraShaker.Instance.ShakeOnce(7f, 12.5f, .1f, .5f);
-                enemy.GetComponentInChildren<EnemyGunRandomizerTemp>().SerpilHitEnemy2();
+              //  enemy.GetComponentInChildren<EnemyGunRandomizerTemp>().SerpilHitEnemy2();
 
                 /*if (enemy.GetComponent<EnemyGunDying>().sj == true)
                     enemy.GetComponent<EnemyGunDying>().a = 0;
@@ -524,4 +531,5 @@ public class Combat : MonoBehaviour
         }
     }
    
+
 }
