@@ -332,23 +332,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25ee5aace935187429a53fdeb2e3465a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &513486968 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 513486968, guid: 57cc68c6047d5bc4b9cfe6c2569ce317, type: 3}
-  m_PrefabInstance: {fileID: 2632435415853504649}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0f24278dee43dc4eba9464fb273f439, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &513486969 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6609903288324223392, guid: 57cc68c6047d5bc4b9cfe6c2569ce317, type: 3}
   m_PrefabInstance: {fileID: 2632435415853504649}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 712574864}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 806ba1c49c177254ba39bf5ab823916f, type: 3}
@@ -579,6 +568,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616044755}
   m_CullTransparentMesh: 1
+--- !u!1 &712574864 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8104498718558699020, guid: 57cc68c6047d5bc4b9cfe6c2569ce317, type: 3}
+  m_PrefabInstance: {fileID: 2632435415853504649}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &712574866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712574864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0f24278dee43dc4eba9464fb273f439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SwordEnemy: {fileID: 8276703400578374500, guid: 5a655d691704ad74db16201b5de74747, type: 3}
+  GunEnemy: {fileID: 5255134946166372270, guid: 36b2ad011835d134ba20784fb8b9ef3e, type: 3}
+  obstacles: []
+  cameraTransform: {fileID: 1916784757}
+  level: 0
+  hardness: 0
+  amount_sword: 0
+  amount_gun: 0
+  totalEnemy: 0
+  rangeX: 15
+  rangeY: 9
 --- !u!1001 &845613568
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1383,7 +1400,7 @@ PrefabInstance:
     - target: {fileID: 5379579360198467149, guid: cfe2f769ceb511146ba7f8ec5bfb7b40, type: 3}
       propertyPath: waveSystem
       value: 
-      objectReference: {fileID: 513486968}
+      objectReference: {fileID: 712574866}
     - target: {fileID: 5379579360198467149, guid: cfe2f769ceb511146ba7f8ec5bfb7b40, type: 3}
       propertyPath: PhotoFrame1
       value: 
@@ -1719,6 +1736,10 @@ PrefabInstance:
       propertyPath: streakText
       value: 
       objectReference: {fileID: 616044757}
+    - target: {fileID: 6609903288324223392, guid: 57cc68c6047d5bc4b9cfe6c2569ce317, type: 3}
+      propertyPath: waveSystem
+      value: 
+      objectReference: {fileID: 712574866}
     - target: {fileID: 6892506738969347830, guid: 57cc68c6047d5bc4b9cfe6c2569ce317, type: 3}
       propertyPath: m_RootOrder
       value: 14
