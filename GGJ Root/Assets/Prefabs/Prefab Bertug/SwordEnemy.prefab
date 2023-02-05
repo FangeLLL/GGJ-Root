@@ -1465,9 +1465,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8168684248422254034}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f94f69dea9657824fb91b930ae20fdc1, type: 2}
+  m_Controller: {fileID: 9100000, guid: 061a2ca8c0822aa4bba25013f3b941a1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1532,7 +1532,7 @@ MonoBehaviour:
   stoppingDistance: 2
   retreatDistance: 1
   attackDistance: 4
-  attackRadius: 1.1
+  attackRadius: 0.9
   a: 0
   oneTimeExecution: 0
   player: {fileID: 0}

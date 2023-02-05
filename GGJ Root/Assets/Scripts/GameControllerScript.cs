@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static GameControllerScript;
 
 public class GameControllerScript : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class GameControllerScript : MonoBehaviour
         public Spec(float[] barr)
         {
             barriers = barr;
-            currentBarrier = barr[0];
+            currentBarrier = barr[1];
         }
 
     }
@@ -47,9 +48,9 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
-    public Weapon sword = new Weapon(new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 0.10f, 0.20f, 0.25f, 0.30f }, new float[] { 0, 10, 20, 25, 30 });
-    public Weapon magic = new Weapon(new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 0.10f, 0.20f, 0.25f, 0.30f }, new float[] { 0, 10, 20, 25, 30 });
-    public Weapon gun = new Weapon(new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 0.10f, 0.20f, 0.25f, 0.30f }, new float[] { 0, 10, 20, 25, 30 });
+    public Weapon sword = new Weapon(new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 0.10f, 0.20f, 0.25f, 0.30f }, new float[] { 0, 5, 10 });
+    public Weapon magic = new Weapon(new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 0.10f, 0.20f, 0.25f, 0.30f }, new float[] { 0, 10, 20 });
+    public Weapon gun = new Weapon(new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 0.10f, 0.20f, 0.25f, 0.30f }, new float[] { 0, 10, 20 });
 
 
     void Start()
@@ -92,7 +93,7 @@ public class GameControllerScript : MonoBehaviour
 
                 weapon.accuracy.add += weapon.accuracy.amount;
 
-                weapon.accuracy.currentBarrier = weapon.accuracy.barriers[(int)(weapon.accuracy.add / weapon.accuracy.amount)];
+                weapon.accuracy.currentBarrier = weapon.accuracy.barriers[System.Array.IndexOf(weapon.accuracy.barriers, weapon.accuracy.currentBarrier) + 1];
 
                 switch (type)
                 {
@@ -129,7 +130,7 @@ public class GameControllerScript : MonoBehaviour
             if (weapon.fire_total >= weapon.fireRate.currentBarrier)
             {
                 weapon.fireRate.add += weapon.fireRate.amount;
-                weapon.fireRate.currentBarrier = weapon.fireRate.barriers[(int)(weapon.fireRate.add / weapon.fireRate.amount)];
+                weapon.fireRate.currentBarrier = weapon.fireRate.barriers[System.Array.IndexOf(weapon.fireRate.barriers, weapon.fireRate.currentBarrier) + 1];
 
 
                 switch (type)
@@ -171,7 +172,7 @@ public class GameControllerScript : MonoBehaviour
             {
                 weapon.damage.add += weapon.damage.amount;
 
-                weapon.damage.currentBarrier = weapon.damage.barriers[(int)(weapon.damage.add / weapon.damage.amount)];
+                weapon.damage.currentBarrier = weapon.damage.barriers[System.Array.IndexOf(weapon.damage.barriers, weapon.damage.currentBarrier) + 1];
 
                 Debug.Log("Damage incrased");
 
@@ -210,7 +211,10 @@ public class GameControllerScript : MonoBehaviour
         {
             if (weapon.kill >= weapon.upgrade.currentBarrier)
             {
-                weapon.upgrade.currentBarrier = weapon.upgrade.barriers[(int)(weapon.upgrade.add / weapon.upgrade.amount)];
+                Debug.Log(weapon.kill);
+                Debug.Log(weapon.upgrade.currentBarrier);
+                // weapon.upgrade.currentBarrier = weapon.upgrade.barriers[((int)(weapon.upgrade.add / weapon.upgrade.amount))+1];
+                weapon.upgrade.currentBarrier = weapon.upgrade.barriers[System.Array.IndexOf(weapon.upgrade.barriers, weapon.upgrade.currentBarrier) + 1];
                 switch (type)
                 {
                     case "gun":

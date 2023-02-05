@@ -901,6 +901,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   boyut: {x: 2.8, y: 2.8}
+  swords:
+  - {fileID: 21300000, guid: 8ad276c4466b0654b942d2bd98f691e0, type: 3}
+  - {fileID: 21300000, guid: c568191ddb53c2a419724e3c6e5289a3, type: 3}
+  - {fileID: 21300000, guid: 465a45bcfe8e13248911feeaaee85baa, type: 3}
+  guns: []
 --- !u!61 &6906138244830367577
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -960,7 +965,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraMovement: {fileID: 0}
-  gameObject: {fileID: 1043737081}
 --- !u!1 &6906138245765317421
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,6 +1083,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6906138244830367582}
     m_Modifications:
+    - target: {fileID: 5941291005861662978, guid: 293ca8102a6dc9849a211c29ce4cebfb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ad276c4466b0654b942d2bd98f691e0, type: 3}
     - target: {fileID: 5941291005861662980, guid: 293ca8102a6dc9849a211c29ce4cebfb, type: 3}
       propertyPath: m_RootOrder
       value: 6

@@ -59,8 +59,8 @@ public class Combat : MonoBehaviour
     public Sword currentSword;
 
     public Sword branch = new Sword(2f, 5f, 2);
-    public Sword bat = new Sword(2f, 7f, 0.7f);
-    public Sword knife = new Sword(3f, 8f, 0.6f);
+    public Sword bat = new Sword(2f, 7f, 2);
+    public Sword knife = new Sword(3f, 8f, 2);
 
     GameControllerScript gameControllerScript;
 
@@ -102,8 +102,12 @@ public class Combat : MonoBehaviour
 
     public Vector2 boyut;
 
+    public Sprite[] swords,guns;
+
+
     void Start()
     {
+        gameObject.transform.Find("SerpilSword2").GetComponent<SpriteRenderer>().sprite = swords[0];
         vcam = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
         noise = vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
@@ -238,10 +242,12 @@ public class Combat : MonoBehaviour
                     case 1:
                         Debug.Log("bat");
                         currentSword = bat;
+                        gameObject.transform.Find("SerpilSword2").GetComponent<SpriteRenderer>().sprite = swords[1];
                         break;
                     case 2:
                         Debug.Log("knife");
                         currentSword = knife;
+                        gameObject.transform.Find("SerpilSword2").GetComponent<SpriteRenderer>().sprite = swords[2];
                         break;
                 }
                 currentSword.damage += gameControllerScript.sword.damage.add;
