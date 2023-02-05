@@ -100,10 +100,14 @@ MonoBehaviour:
   GUNshotsFiredText: {fileID: 0}
   SWORDenemiesKilledText: {fileID: 0}
   SWORDhitCountText: {fileID: 0}
-  FireRateSliderText: {fileID: 0}
-  DamageSliderText: {fileID: 0}
-  FireRateSlider: {fileID: 0}
-  DamageSlider: {fileID: 0}
+  GUNFireRateSliderText: {fileID: 0}
+  SWORDFireRateSliderText: {fileID: 0}
+  GUNDamageSliderText: {fileID: 0}
+  SWORDDamageSliderText: {fileID: 0}
+  GUNFireRateSlider: {fileID: 0}
+  SWORDFireRateSlider: {fileID: 0}
+  GUNDamageSlider: {fileID: 0}
+  SWORDDamageSlider: {fileID: 0}
   GUNenemiesKilled: 0
   GUNhitCount: 0
   GUNtotalAccucary: 0
@@ -111,14 +115,3 @@ MonoBehaviour:
   SWORDenemiesKilled: 0
   SWORDhitCount: 0
   PlayerCounter: 0
-  lerpTime: 1
-  lerpTime2: 1
-  bool1: 0
-  bool2: 0
-  bool3: 0
-  bool4: 0
-  bool5: 0
-  bool6: 0
-  keyCodeChecker: 0
-  onetimebool1: 1
-  onetimebool2: 1

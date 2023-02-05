@@ -878,6 +878,8 @@ MonoBehaviour:
   gun_level: 2
   magic_level: 0
   sword_level: 0
+  magicA: 0
+  gunA: 0
   animator: {fileID: 6906138244830367576}
   attackPoint: {fileID: 6906138244509504981}
   AttackRadius: 0.5
@@ -938,7 +940,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 25b34d12f5e7c4a42af4790c97c4349f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
