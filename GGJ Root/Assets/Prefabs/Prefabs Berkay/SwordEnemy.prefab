@@ -145,6 +145,7 @@ MonoBehaviour:
   healthBarObject: {fileID: 1216434610704637665}
   damageBarObject: {fileID: 6117040177725579909}
   sj: 0
+  powerUpPrefab: {fileID: 7560392356194643236, guid: 551645f31229ac844abc37e17c511793, type: 3}
 --- !u!50 &8276703400578374510
 Rigidbody2D:
   serializedVersion: 4

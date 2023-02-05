@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
 
     public GameObject shake;
 
-    public float speed, duration = 5f, deathTime;
+    public float speed, duration = 10f, deathTime;
     public Rigidbody2D rb;
     public float damage;
     void Start()
