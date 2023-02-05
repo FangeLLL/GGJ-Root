@@ -17,12 +17,13 @@ public class GameControllerScript : MonoBehaviour
 
     public class Spec
     {
-        public float definer, currentBarrier, add, start, amount;
+        public float definer, currentBarrier, add=0, start, amount;
         public float[] barriers;
         public Spec(float[] barr)
         {
             barriers = barr;
             currentBarrier = barr[0];
+            start = currentBarrier;
         }
 
     }
@@ -64,6 +65,7 @@ public class GameControllerScript : MonoBehaviour
         sword.damage.amount = 0.5f;
         sword.upgrade.amount = 0.5f;
 
+        /*
         gun.fireRate.add = gun.fireRate.amount;
         gun.accuracy.add = gun.accuracy.amount;
         gun.damage.add = gun.damage.amount;
@@ -77,7 +79,7 @@ public class GameControllerScript : MonoBehaviour
         sword.fireRate.add = sword.fireRate.amount;
         sword.damage.add = sword.damage.amount;
         sword.upgrade.add = sword.upgrade.amount;
-
+        */
 
 
         streak = 1;
@@ -102,7 +104,7 @@ public class GameControllerScript : MonoBehaviour
 
             weapon.accuracy.add += weapon.accuracy.amount;
 
-            weapon.accuracy.currentBarrier = weapon.accuracy.barriers[(int)(weapon.accuracy.add / weapon.accuracy.amount) - 1];
+            weapon.accuracy.currentBarrier = weapon.accuracy.barriers[(int)(weapon.accuracy.add / weapon.accuracy.amount)];
 
             switch (type)
             {
@@ -131,12 +133,16 @@ public class GameControllerScript : MonoBehaviour
 
     public void checkFireRate(Weapon weapon, string type)
     {
+        Debug.Log(weapon.fire_total);
+
         if (weapon.fire_total >= weapon.fireRate.currentBarrier)
         {
             Debug.Log("Fire Rate incrased");
+            Debug.Log(weapon.fire_total);
+            Debug.Log(weapon.fireRate.currentBarrier);
             weapon.fireRate.add += weapon.fireRate.amount;
 
-            weapon.fireRate.currentBarrier = weapon.fireRate.barriers[(int)(weapon.fireRate.add / weapon.fireRate.amount) - 1];
+            weapon.fireRate.currentBarrier = weapon.fireRate.barriers[(int)(weapon.fireRate.add / weapon.fireRate.amount)];
 
 
             switch (type)
@@ -173,7 +179,7 @@ public class GameControllerScript : MonoBehaviour
         {
             weapon.damage.add += weapon.damage.amount;
 
-            weapon.damage.currentBarrier = weapon.damage.barriers[(int)(weapon.damage.add / weapon.damage.amount) - 1];
+            weapon.damage.currentBarrier = weapon.damage.barriers[(int)(weapon.damage.add / weapon.damage.amount)];
 
             Debug.Log("Damage incrased");
 
@@ -209,7 +215,7 @@ public class GameControllerScript : MonoBehaviour
     {
         if (weapon.kill >= weapon.upgrade.currentBarrier)
         {
-            weapon.upgrade.currentBarrier = weapon.upgrade.barriers[(int)(weapon.upgrade.add / weapon.upgrade.amount) - 1];
+            weapon.upgrade.currentBarrier = weapon.upgrade.barriers[(int)(weapon.upgrade.add / weapon.upgrade.amount)];
             switch (type)
             {
                 case "gun":
@@ -281,6 +287,8 @@ public class GameControllerScript : MonoBehaviour
         ResetIstatistics(magic);
         ResetIstatistics(sword);
 
+        score = 0;
+        streak = 0;
 
     }
 
@@ -291,6 +299,9 @@ public class GameControllerScript : MonoBehaviour
             spec.start = spec.barriers[System.Array.IndexOf(spec.barriers, spec.start) + 1];
             spec.currentBarrier = spec.start;
             spec.add = (System.Array.IndexOf(spec.barriers, spec.start) + 1) * spec.amount;
+            Debug.Log(spec.start);
+            Debug.Log(spec.add);
+
         }
     }
 
@@ -298,6 +309,7 @@ public class GameControllerScript : MonoBehaviour
     {
         weapon.kill = 0;
         weapon.hit = 0;
+        weapon.fire = 0;
         weapon.hit_total = 0;
         weapon.fire_total = 0;
     }
