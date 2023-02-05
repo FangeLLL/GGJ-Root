@@ -33,7 +33,7 @@ public class PlayerKiller : MonoBehaviour
         gameControllerScript.resetScene();
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         GetComponent<PlayerMovement>().enabled = false;
-        cameraMovement.StartCoroutine(cameraMovement.ManFuckThisGame());
+        cameraMovement.StartCoroutine(cameraMovement.HiGGJ());
     }
 
 }
