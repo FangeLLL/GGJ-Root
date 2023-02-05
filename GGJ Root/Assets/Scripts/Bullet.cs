@@ -39,19 +39,9 @@ public class Bullet : MonoBehaviour
         {
             case "SwordEnemy":
                 collision.gameObject.GetComponent<Enemy>().TakeDamage(damage, "gun");
-                if (collision.gameObject.GetComponent<Enemy>().CurrentHealt <= GameObject.FindGameObjectWithTag("Player").GetComponent<Combat>().hpdamage)
-                {
-                    CameraShaker.Instance.ShakeOnce(10f, 50f, .1f, 1f);
-                }                                        
                 break;
             case "GunEnemy":
                 collision.gameObject.GetComponent<EnemyGunDying>().TakeDamage(damage, "gun");
-
-                if (collision.gameObject.GetComponent<EnemyGunDying>().CurrentHealt <= GameObject.FindGameObjectWithTag("Player").GetComponent<Combat>().hpdamage)
-                {
-                    CameraShaker.Instance.ShakeOnce(10f, 50f, .1f, 1f);
-                }
-
                 break;
             case "Player":
                 //PLAYER DAMAGE
