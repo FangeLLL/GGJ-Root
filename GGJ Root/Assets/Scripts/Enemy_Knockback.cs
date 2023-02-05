@@ -13,6 +13,11 @@ public class Enemy_Knockback : MonoBehaviour
     //int parametreattackBool = Animator.StringToHash("attackBool");
     //int parametrewalkBool = Animator.StringToHash("walkBool");
 
+    private void Start()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     public void Knockback()
     {
         knockbackDirection = new Vector2(0f, GameObject.FindGameObjectWithTag("Player").GetComponent<Combat>().hpdamage * 0.16f);
