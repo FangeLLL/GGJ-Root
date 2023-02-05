@@ -18,6 +18,7 @@ public class Combat : MonoBehaviour
     public GameObject bulletPreFab;
     public float nextFireTime;
     public int gun_level, magic_level, sword_level;
+    public bool magicA=false, gunA=false;
 
     public class Gun
     {
@@ -130,7 +131,7 @@ public class Combat : MonoBehaviour
 
         if (Time.time >= nextFireTime)
         {
-            if (Input.GetMouseButtonDown(1) && !currentGun.auto)
+            if (Input.GetMouseButtonDown(1) && !currentGun.auto && gunA)
             {
                 Shoot();
                 nextFireTime = Time.time + 1f / currentGun.fireRate;
@@ -140,7 +141,7 @@ public class Combat : MonoBehaviour
 
         if (Time.time >= nextFireTime)
         {
-            if (Input.GetMouseButton(1) && currentGun.auto)
+            if (Input.GetMouseButton(1) && currentGun.auto && gunA)
             {
                 Shoot();
                 nextFireTime = Time.time + 1f / currentGun.fireRate;
@@ -479,4 +480,45 @@ public class Combat : MonoBehaviour
         //Gizmos.DrawCube(DeflectPoint2.position, boyut);
         Gizmos.DrawSphere(attackPoint.position, AttackRadius);
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Buff":
+                int ind=0,a=0;
+                while (ind == 0)
+                {
+                    a++;
+                    if (collision.gameObject.transform.GetChild(a).gameObject.activeSelf)
+                    {
+                        ind = a;
+                    }
+                }
+                GameObject[] buffs = GameObject.FindGameObjectsWithTag("Buff");
+
+                foreach(GameObject buff in buffs)
+                {
+                    if (buff.transform.GetChild(ind).gameObject.activeSelf)
+                    {
+                        Destroy(buff);
+                    }
+                }
+
+                switch (ind)
+                {
+                    case 1:
+                        magicA = true;
+                        gameControllerScript.PowerUps.Remove("Magic");
+                        break;
+                    case 2:
+                        gunA = true;
+                        gameControllerScript.PowerUps.Remove("Gun");
+                        break;
+                }
+                Destroy(collision.gameObject);
+                break;
+        }
+    }
+   
 }

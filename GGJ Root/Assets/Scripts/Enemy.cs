@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
 
     GameControllerScript gameControllerScript;
     WaveSystem waveSystem;
-
+    public GameObject powerUpPrefab;
 
 
     private void Start()
@@ -203,6 +203,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
+
     //POSTURE STUFF
 
     //private void Update()
@@ -325,5 +326,25 @@ public class Enemy : MonoBehaviour
             StopCoroutine(flashRoutine);
 
         flashRoutine = StartCoroutine(FlashRoutine());
+    }
+
+    private void OnDestroy()
+    {
+        if (gameControllerScript.PowerUps.Count != 0 && Random.Range(0, 3) == 0)
+        {
+            GameObject powerUpInstance = Instantiate(powerUpPrefab, transform.position, transform.rotation);
+            int loc = 1;
+            switch (gameControllerScript.PowerUps[Random.Range(0, gameControllerScript.PowerUps.Count)])
+            {
+                case "Gun":
+                    loc = 2;
+                    break;
+                case "Magic":
+                    loc = 1;
+                    break;
+            }
+            Debug.Log(gameControllerScript.PowerUps.Count);
+            powerUpInstance.transform.GetChild(loc).gameObject.SetActive(true);
+        }
     }
 }

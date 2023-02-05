@@ -16,16 +16,17 @@ public class GameControllerScript : MonoBehaviour
     public TextMeshProUGUI scoreText, streakText;
     public WaveSystem waveSystem;
     private GameObject[] enemies;
+    public List<string> PowerUps = new List<string>() { "Magic", "Gun" };
+
 
     public class Spec
     {
-        public float definer, currentBarrier, add=0, start, amount;
+        public float definer, currentBarrier, add = 0, start = 0, amount;
         public float[] barriers;
         public Spec(float[] barr)
         {
             barriers = barr;
             currentBarrier = barr[0];
-            start = currentBarrier;
         }
 
     }
@@ -46,9 +47,9 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
-    public Weapon sword = new Weapon(new float[] { 10, 20, 25, 30 }, new float[] { 10, 20, 25, 30 }, new float[] { 10, 20, 25, 30 }, new float[] { 10, 20, 25, 30 });
-    public Weapon magic = new Weapon(new float[] { 10, 20, 25, 30 }, new float[] { 10, 20, 25, 30 }, new float[] { 10, 20, 25, 30 }, new float[] { 10, 20, 25, 30 });
-    public Weapon gun = new Weapon(new float[] { 10, 20, 25, 30 }, new float[] { 10, 20, 25, 30 }, new float[] { 10, 20, 25, 30 }, new float[] { 10, 20, 25, 30 });
+    public Weapon sword = new Weapon(new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 0.10f, 0.20f, 0.25f, 0.30f }, new float[] { 0, 10, 20, 25, 30 });
+    public Weapon magic = new Weapon(new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 0.10f, 0.20f, 0.25f, 0.30f }, new float[] { 0, 10, 20, 25, 30 });
+    public Weapon gun = new Weapon(new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 0.10f, 0.20f, 0.25f, 0.30f }, new float[] { 0, 10, 20, 25, 30 });
 
 
     void Start()
@@ -66,23 +67,6 @@ public class GameControllerScript : MonoBehaviour
         sword.fireRate.amount = 0.5f;
         sword.damage.amount = 0.5f;
         sword.upgrade.amount = 0.5f;
-
-        /*
-        gun.fireRate.add = gun.fireRate.amount;
-        gun.accuracy.add = gun.accuracy.amount;
-        gun.damage.add = gun.damage.amount;
-        gun.upgrade.add = gun.upgrade.amount;
-
-        magic.fireRate.add = magic.fireRate.amount;
-        magic.accuracy.add = magic.accuracy.amount;
-        magic.damage.add = magic.damage.amount;
-        magic.upgrade.add = magic.upgrade.amount;
-
-        sword.fireRate.add = sword.fireRate.amount;
-        sword.damage.add = sword.damage.amount;
-        sword.upgrade.add = sword.upgrade.amount;
-        */
-
 
         streak = 1;
 
@@ -133,8 +117,8 @@ public class GameControllerScript : MonoBehaviour
 
             }
         }
-      
-       
+
+
     }
 
     public void checkFireRate(Weapon weapon, string type)
@@ -175,7 +159,7 @@ public class GameControllerScript : MonoBehaviour
         {
             Debug.Log("MAX");
         }
-       
+
     }
 
     public void checkDamage(Weapon weapon, string type)
@@ -299,15 +283,16 @@ public class GameControllerScript : MonoBehaviour
 
         score = 0;
         streak = 0;
-        waveSystem.level= 1;
+        waveSystem.level = 1;
         waveSystem.totalEnemy = 0;
-        DestroyTagEnemies("GunEnemy");
-        DestroyTagEnemies("SwordEnemy");
+        DestroyTagObjects("GunEnemy");
+        DestroyTagObjects("SwordEnemy");
+        DestroyTagObjects("Buff");
     }
 
     private void SpecStartSetting(Spec spec)
     {
-        if (spec.currentBarrier > spec.start)
+        if (spec.currentBarrier > spec.barriers[System.Array.IndexOf(spec.barriers, spec.start) + 1])
         {
             spec.start = spec.barriers[System.Array.IndexOf(spec.barriers, spec.start) + 1];
             spec.currentBarrier = spec.start;
@@ -327,7 +312,7 @@ public class GameControllerScript : MonoBehaviour
         weapon.fire_total = 0;
     }
 
-    private void DestroyTagEnemies(string tag)
+    private void DestroyTagObjects(string tag)
     {
         enemies = GameObject.FindGameObjectsWithTag(tag);
 
