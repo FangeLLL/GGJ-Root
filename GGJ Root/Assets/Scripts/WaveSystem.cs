@@ -75,11 +75,12 @@ public class WaveSystem : MonoBehaviour
     private IEnumerator ShowWave()
     {
         waveText.SetActive(true);
-        waveText.GetComponent<TextMeshPro>().text = "Wave " + level.ToString();
-        waveText.GetComponent<TextMeshPro>().fontSize = 50;
+        waveText.GetComponent<TextMeshProUGUI>().text = "Wave " + level.ToString();
         yield return new WaitForSeconds(.5f);
-        waveText.GetComponent<TextMeshPro>().fontSize = 36;
-        yield return new WaitForSeconds(.2f);
-        waveText.SetActive(false);
+        waveText.GetComponent<TextMeshProUGUI>().fontSize = 50;
+        yield return new WaitForSeconds(1);
+       waveText.GetComponent<TextMeshProUGUI>().fontSize = 36;
+        yield return new WaitForSeconds(1);
+       waveText.SetActive(false);
     }
 }

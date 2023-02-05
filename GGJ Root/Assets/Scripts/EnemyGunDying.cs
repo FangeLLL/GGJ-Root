@@ -200,7 +200,7 @@ public class EnemyGunDying : MonoBehaviour
         col2.enabled = false;
         healthBarObject.SetActive(false);
         damageBarObject.SetActive(false);
-        this.GetComponentInChildren<EnemyGunRandomizerTemp>().SerpilKillsGunEnemy();
+      //  this.GetComponentInChildren<EnemyGunRandomizerTemp>().SerpilKillsGunEnemy();
         StartCoroutine(DieDelay());
     }
 
@@ -224,7 +224,6 @@ public class EnemyGunDying : MonoBehaviour
                     loc = 1;
                     break;
             }
-            Debug.Log(gameControllerScript.PowerUps.Count);
             powerUpInstance.transform.GetChild(loc).gameObject.SetActive(true);
         }
         Destroy(gameObject);
