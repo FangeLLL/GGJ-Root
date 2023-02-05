@@ -9,6 +9,9 @@ public class FamilyTreeStatInformer : MonoBehaviour
     public GameControllerScript gameControllerScript;
     public CameraMovement cameraMovement;
 
+    public TextMeshProUGUI ContinueWithSuccessorText;
+    public TextMeshProUGUI PlayerCounterText;
+
     public TextMeshProUGUI GUNenemiesKilledText;
     public TextMeshProUGUI GUNhitCountText;
     public TextMeshProUGUI GUNtotalAccucaryText;
@@ -22,6 +25,7 @@ public class FamilyTreeStatInformer : MonoBehaviour
     public float GUNshotsFired;
     public float SWORDenemiesKilled;
     public float SWORDhitCount;
+    public float PlayerCounter = 0;
 
     public float lerpTime = 1f;
     private float startTime;
@@ -29,6 +33,7 @@ public class FamilyTreeStatInformer : MonoBehaviour
     public bool bool2 = false;
     public bool bool3 = false;
     public bool bool4 = false;
+    public bool keyCodeChecker = false;
 
 
 
@@ -77,15 +82,23 @@ public class FamilyTreeStatInformer : MonoBehaviour
             if (currentGUNShotsFired == GUNshotsFired)
             {
                 bool4 = false;
-                //cameraMovement.moveCamera = true;
-                //cameraMovement.setpositiontoparent = false;
+                keyCodeChecker = true;
+                ContinueWithSuccessorText.text = "Press N Continue With Successor";
+                Debug.Log("anan");
             }
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        if (keyCodeChecker)
         {
-            cameraMovement.moveCamera = true;
-            cameraMovement.setpositiontoparent = false;
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                cameraMovement.moveCamera = true;
+                cameraMovement.setpositiontoparent = false;
+                ContinueWithSuccessorText.text = "";
+                keyCodeChecker = false;
+            }
         }
+        
 
 
 
@@ -95,7 +108,8 @@ public class FamilyTreeStatInformer : MonoBehaviour
     {
         startTime = Time.time;
         bool1 = true;
-
+        PlayerCounter++;
+        PlayerCounterText.text = PlayerCounter + "/6";
         GUNenemiesKilled = gameControllerScript.gun.kill;
         GUNhitCount = gameControllerScript.gun.hit_total;
         if (gameControllerScript.gun.fire_total == 0)
@@ -110,6 +124,14 @@ public class FamilyTreeStatInformer : MonoBehaviour
         SWORDenemiesKilled = gameControllerScript.sword.kill;
         SWORDhitCount = gameControllerScript.sword.fire_total;
         gameControllerScript.Inheritance();
+    }
+
+    public void TextReseter()
+    {
+        GUNenemiesKilledText.text = "Enemies Killed: 0";
+        GUNhitCountText.text = "Hit Count: 0";
+        GUNtotalAccucaryText.text = "Total Accucary: %0";
+        GUNshotsFiredText.text = "Shots Fired: 0";
     }
 
 
