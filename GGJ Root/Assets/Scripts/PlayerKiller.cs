@@ -19,6 +19,10 @@ public class PlayerKiller : MonoBehaviour
     {
         Color color = Random.ColorHSV(0f, 1f, 1f, 1f, 1f, 1f);
         GetComponent<SpriteRenderer>().color = color;
+        transform.Find("GameObject").GetComponent<SpriteRenderer>().color = color;
+        transform.Find("LeftHand").GetComponent<SpriteRenderer>().color = color;
+        transform.Find("RightHand").GetComponent<SpriteRenderer>().color = color;
+
     }
 
     public void PlayerDie()

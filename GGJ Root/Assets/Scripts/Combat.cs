@@ -407,7 +407,7 @@ public class Combat : MonoBehaviour
                 enemy.GetComponent<EnemyGunDying>().TakeDamage(hpdamage, "sword");
                 //GameObject.Find("GunEnemySoundRandomizer 1").GetComponent<EnemyGunRandomizerTemp>().SarpHitEnemy2();
                 CameraShaker.Instance.ShakeOnce(7f, 12.5f, .1f, .5f);
-                enemy.GetComponentInChildren<EnemyGunRandomizerTemp>().SerpilHitEnemy2();
+              //  enemy.GetComponentInChildren<EnemyGunRandomizerTemp>().SerpilHitEnemy2();
 
                 /*if (enemy.GetComponent<EnemyGunDying>().sj == true)
                     enemy.GetComponent<EnemyGunDying>().a = 0;
