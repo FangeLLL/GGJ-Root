@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class WaveSystem : MonoBehaviour
@@ -10,6 +11,8 @@ public class WaveSystem : MonoBehaviour
     public Transform cameraTransform;
     public int level,hardness,amount_sword,amount_gun,totalEnemy;
     public float rangeX, rangeY;
+    public GameObject waveText;
+
 
 
     // Start is called before the first frame update
@@ -23,6 +26,7 @@ public class WaveSystem : MonoBehaviour
     {
         if (totalEnemy == 0)
         {
+            StartCoroutine(ShowWave());
             hardness = level * 25;
             amount_sword = Random.Range(0, hardness / 5);
             amount_gun = (hardness - (amount_sword * 5)) / 5;
@@ -68,5 +72,14 @@ public class WaveSystem : MonoBehaviour
 
     }
 
-
+    private IEnumerator ShowWave()
+    {
+        waveText.SetActive(true);
+        waveText.GetComponent<TextMeshPro>().text = "Wave " + level.ToString();
+        waveText.GetComponent<TextMeshPro>().fontSize = 50;
+        yield return new WaitForSeconds(.5f);
+        waveText.GetComponent<TextMeshPro>().fontSize = 36;
+        yield return new WaitForSeconds(.2f);
+        waveText.SetActive(false);
+    }
 }
