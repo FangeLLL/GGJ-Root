@@ -55,7 +55,6 @@ public class FamilyTreeStatInformer : MonoBehaviour
     private float lerpTime2 = 1f;
     private float lerpTime3 = 1f;
     private float lerpTime4 = 1f;
-    private float lerpTime5 = 1f;
 
     private float startTime;
     private bool swordbool1 = false;
@@ -68,13 +67,11 @@ public class FamilyTreeStatInformer : MonoBehaviour
     public bool bool4 = false;
     private bool bool5 = false;
     private bool bool6 = false;
-    private bool bool7 = false;
     private bool keyCodeChecker = false;
     private bool onetimebool1 = true;
     private bool onetimebool2 = true;
     private bool onetimebool3 = true;
     private bool onetimebool4 = true;
-    private bool onetimebool5 = true;
 
 
 
@@ -267,7 +264,6 @@ public class FamilyTreeStatInformer : MonoBehaviour
                     float temp2 = System.Array.IndexOf(gameControllerScript.gun.damage.barriers, gameControllerScript.gun.damage.start) * gameControllerScript.gun.damage.amount;
                     GUNDamageSliderText.text = "Successor Damage Increased \r\n " + temp2 + " >> " + (temp2 + gameControllerScript.gun.damage.amount);
                     bool6 = false;
-                    bool7 = true;
                     startTime = Time.time;
                     onetimebool2 = false;
 
@@ -281,7 +277,6 @@ public class FamilyTreeStatInformer : MonoBehaviour
                 else
                 {
                     bool6 = false;
-                    bool7 = true;
                     startTime = Time.time;
                     onetimebool2 = false;
 
@@ -325,7 +320,6 @@ public class FamilyTreeStatInformer : MonoBehaviour
         onetimebool2 = true;
         onetimebool3 = true;
         onetimebool4 = true;
-        onetimebool5 = true;
         PlayerCounter++;
         PlayerCounterText.text = PlayerCounter + "/6";
         GUNenemiesKilled = gameControllerScript.gun.kill;

@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class PlayerKiller : MonoBehaviour
 {
     public CameraMovement cameraMovement;
-    public GameObject gameObject;
-    //public FamilyTreeStatInformer familyTreeStatInformer;
 
     GameControllerScript gameControllerScript;
 
