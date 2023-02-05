@@ -16,12 +16,12 @@ public class GameControllerScript : MonoBehaviour
     public TextMeshProUGUI scoreText, streakText;
     public WaveSystem waveSystem;
     private GameObject[] enemies;
-    public List<string> PowerUps = new List<string>() {"Magic","Gun"};
+    public List<string> PowerUps = new List<string>() { "Magic", "Gun" };
 
 
     public class Spec
     {
-        public float definer, currentBarrier, add=0, start=0, amount;
+        public float definer, currentBarrier, add = 0, start = 0, amount;
         public float[] barriers;
         public Spec(float[] barr)
         {
@@ -47,14 +47,13 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
-    public Weapon sword = new Weapon(new float[] {0, 10, 20, 25, 30 }, new float[] {0, 10, 20, 25, 30 }, new float[] { 0, 0.10f, 0.20f, 0.25f, 0.30f }, new float[] {0, 10, 20, 25, 30 });
-    public Weapon magic = new Weapon(new float[] {0, 10, 20, 25, 30 }, new float[] {0, 10, 20, 25, 30 }, new float[] { 0, 0.10f, 0.20f, 0.25f, 0.30f }, new float[] {0, 10, 20, 25, 30 });
-    public Weapon gun = new Weapon(new float[] {0, 10, 20, 25, 30 }, new float[] {0, 10, 20, 25, 30 }, new float[] {0, 0.10f, 0.20f, 0.25f, 0.30f }, new float[] {0, 10, 20, 25, 30 });
+    public Weapon sword = new Weapon(new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 0.10f, 0.20f, 0.25f, 0.30f }, new float[] { 0, 10, 20, 25, 30 });
+    public Weapon magic = new Weapon(new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 0.10f, 0.20f, 0.25f, 0.30f }, new float[] { 0, 10, 20, 25, 30 });
+    public Weapon gun = new Weapon(new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 10, 20, 25, 30 }, new float[] { 0, 0.10f, 0.20f, 0.25f, 0.30f }, new float[] { 0, 10, 20, 25, 30 });
 
 
     void Start()
     {
-       
         gun.fireRate.amount = 0.5f;
         gun.accuracy.amount = 0.5f;
         gun.damage.amount = 0.5f;
@@ -118,8 +117,8 @@ public class GameControllerScript : MonoBehaviour
 
             }
         }
-      
-       
+
+
     }
 
     public void checkFireRate(Weapon weapon, string type)
@@ -160,7 +159,7 @@ public class GameControllerScript : MonoBehaviour
         {
             Debug.Log("MAX");
         }
-       
+
     }
 
     public void checkDamage(Weapon weapon, string type)
@@ -284,7 +283,7 @@ public class GameControllerScript : MonoBehaviour
 
         score = 0;
         streak = 0;
-        waveSystem.level= 1;
+        waveSystem.level = 1;
         waveSystem.totalEnemy = 0;
         DestroyTagObjects("GunEnemy");
         DestroyTagObjects("SwordEnemy");
